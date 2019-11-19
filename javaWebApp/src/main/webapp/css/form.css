@@ -1,0 +1,63 @@
+
+#Contrasena{
+    position: relative;
+    left: 3%;
+}
+
+#remember{
+
+    text-decoration-color: black;
+}
+
+#verTexto{
+   position: relative;
+   /* top: 40%;
+    left: 62%;*/
+    width: 5%;
+    left: 5%;
+}
+
+img{
+    width: 7%;    
+    height: 10%;
+}
+
+legend{
+    border: 3px solid black;
+    margin: auto;
+    background-color: white;
+    opacity: 0.6;
+}
+
+
+
+fieldset{
+    background-color: white;
+    opacity: 0.6;
+    
+    border: 3px solid black;
+    margin: auto;
+    min-width: 20%;
+    min-height: 50%;
+    text-align: center;   
+        
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+body{
+    
+}
+
+form{
+    width: 50%;
+    height: 60%;
+    position: relative;
+    display: inline-block;
+    top: 10%;
+    left: 25%;
+     
+}
