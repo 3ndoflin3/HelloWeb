@@ -10,14 +10,10 @@
 		<h1>Has iniciado sesion con exito</h1>
 		
 		
-	<% String remember = String.valueOf(request.getAttribute("remember"));
-		if(remember.equals("on")){
-			%>		<p>Tienes la sesion guardada</p>
-			
-	<%	}else {%>
-				<p>No tienes la sesion guardada</p>
-	
-	<%} %>
+	<% String recuerdame = String.valueOf(request.getAttribute("recuerdame"));
+		%>
+		
+		<p>${recuerdame} </p>
 			
 	</body>
 </html>

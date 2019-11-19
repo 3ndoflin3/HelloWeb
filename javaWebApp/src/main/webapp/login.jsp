@@ -38,14 +38,12 @@
             <input type = "checkbox" name ="Andaluz" id ="Andaluz" value="6"> Andaluz <br>
             
         -->
-            <select name ="sexo" id ="sexo">
+            <select name ="idioma" id ="idioma">
 
-                <option value ="esp">Español</option>
+                <option value ="es">Español</option>
                 <option value ="en">Ingles</option>
                 <option value ="cat" selected>Catalan</option>
-                <option value = "gal">Gallego</option>
-                <option value = "eusk">Euskera</option>
-                <option value = "and">Andaluz</option>
+                <option value = "eu">Euskera</option>
 
 
             </select>
@@ -63,7 +61,7 @@
 
 	
 
-        <script src="/Ejercicios/js/eventos.js"></script>
+        <script src="js/eventos.js"></script>
 
     </form>
 </body>
