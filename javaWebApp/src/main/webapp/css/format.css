@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box;
+}
+
+li{
+    padding-top: 5%;
+}
+
+.titulo{
+    font-family: fantasy;
+    padding: 10px;
+    border: 5px solid red;
+}   
+
+.titulo .principal{
+    font: 20px;
+}
+
+.Espacio{
+    background-color: steelblue;
+    
+    height: 20%;
+    margin: 10px;
+}
+
+code{
+    color: red;
+    background-color: lightgrey;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/*Esto es un selector descendente para los hijos que sean p de la clase container*/
+.container p{
+    color: green;
+}
+
+
+.container p span{
+    background-color: indigo;
+}
+
+/*Selecciona los parrafos solo con la clase especial, no es descendente
+Solo se aplica al parrafo que tenga la clase especial*/
+p.especial{
+    color: purple;
+    background-color: #FFF;
+}
+
+/*Otro selector descendente*/
+p .especial{
+
+    font-size: 2em;
+    font-weight: 600; /*Bold*/
+
+}
+
+p{
+    text-align: center;
+    margin: 10px;
+}
+
+dl{
+    margin: 10px;
+}
+
+section{
+    background-color: rgb(105, 105, 189) ;
+    margin: 10px;
+    padding: 5px;
+}
+
+button{
+    margin: 10px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/Ejercicios/css/box-model.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--Toda etiqueta en HTML tiene una estructura de caja-->
+
+    <section>
+        <h1>Box Model</h1>
+        <p class="prueba">Toda etiqueta en HTML tiene una estructura de caja</p>
+
+        <div class="box">1</div>
+        <div class="box">2</div>
+
+        <h2>Elementos en linea o en bloque</h2>
+        <p><code>display</code> es el atributo para gestionar si es linea o bloque(existen muchos mas displays, ej: flexbox)</p>
+        <p>*trick: usar inspector para verlo</p>
+
+        <dl>
+            <dt>Block</dt>
+            <dd>Elemento que ocupa todo el ancho del elemento padre</dd>
+            <dt>Inline</dt>
+            <dd>Elemento que ocupa lo que tenga su contenido </dd>
+            <dt>Inline Block</dt>
+            <dd>Es un hibrido entre las 2 anteriores</dd>
+        </dl>
+    </section>
+
+    
+    <section>
+        <h2>Overflow</h2>
+        <p>Como se muestran los elementos cuando no entra en el contenedor padre <code>visible | hidden | scroll | auto | inherit</code></p>
+        <p>Tambien se puede usar overflow X o Y</p>
+        <div class="box-texto" style="overflow: auto;">
+            
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste earum id est, ducimus facilis incidunt et omnis iusto? Ullam quia eaque nemo optio inventore enim est illum tempora eos perspiciatis.</p>
+                
+            </div>
+            <div class="box-texto" style="overflow: scroll;">
+                <p>Porro iusto maxime nisi perferendis minima voluptas doloribus labore rerum assumenda numquam quidem eaque, mollitia rem, quod natus. Commodi pariatur expedita cum recusandae minus? Odit voluptatibus laborum incidunt atque harum.</p>
+                
+            </div>
+            <div class="box-texto" style="overflow: visible;">
+                <p>Perferendis soluta et velit ipsa necessitatibus blanditiis eligendi asperiores nam incidunt obcaecati voluptas veritatis itaque tempora quos numquam perspiciatis suscipit, assumenda iure distinctio. Vitae dolore qui perspiciatis, placeat ut totam?</p>
+                
+            </div>
+            <div class="box-texto" style="overflow: hidden;">
+                <p>Accusamus nostrum, repellendus nemo temporibus omnis iure, voluptates adipisci obcaecati nam ipsam quae error rerum eaque minus! Iusto quibusdam veniam, dolorum laboriosam laudantium praesentium ut, aperiam minus nemo atque qui.</p>
+            </div>
+        
+    </section>
+
+    <section>
+        <h2>Visibility</h2>
+        <p>Existen dos formas de ocultar elementos de HTML</p>
+        <p>Haciendo uso de la propiedad <code>visibility</code></p>
+
+        <div class="box">1</div>
+        <div class="box" style=" visibility: hidden;">2</div>
+        <div class="box">3</div>
+
+        <br><br>
+        <p>Usando <code>display: none;</code></p>
+
+        
+        <div class="box">1</div>
+        <div class="box" style="display: none;">2</div>
+        <div class="box">3</div>
+
+    </section>
+
+    <section>
+        <h2>Z-Index</h2>
+        <p>Se encarga de la profundidad de los elementos cuando se solapan</p>
+
+        <div class="box" style="position: relative; z-index: 2; left: 100px;">1</div>
+        <div class="box" style="position: relative; z-index: 3; left: 50px; color: red;">2</div>
+        <div class="box" style="position: relative; z-index: 1;">3</div>
+    </section>
+
+</body>
+</html>

@@ -1,12 +1,8 @@
+<%String pagina = "Calculadora"; %>
 
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
-</head>
-<body>
 	
+<%@include file ="../includes/Cabecera.jsp" %>
+
 	<a href ="login.jsp">Volver</a>
 	
 	<form action ="sumar" method = "post">
@@ -28,9 +24,7 @@
 	
 	
 	
-	
-</body>
-</html>
+<%@include file ="../includes/Contacto.jsp" %>
 
 
 	

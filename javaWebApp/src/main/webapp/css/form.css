@@ -1,3 +1,7 @@
+/*@import url("reset.css") screen;*/
+@import "print.css" print;
+
+
 
 #Contrasena{
     position: relative;

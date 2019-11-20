@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/styles.css">
+
+
+    <style>
+        
+        body{
+            max-width: 1024px;
+            margin: auto;
+        }
+
+        form{
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+    
+    <p>Usaremos selectores de atributos ante todo</p>
+
+    <p>Sirven para enviar datos al servidor</p>
+
+    <p>Usar siempre la etiqueta <code> form </code> junto con el boton de submit</p>
+
+    <p>El atributo <code>action </code> sirve para indicar el controlador (modelo vista controlador) en el servidor</p>
+    
+    <p>El atributo name de un <code>input</code> sirve para especificar el nombre del parametro a enviar al servidor o controlador</p>
+    
+    <!--Etiqueta para formularios-->
+    <form action="#" method="POST">
+
+        <fieldset>
+            <legend>Datos Personales</legend>
+            <!--En el for se pone el id del input-->
+            <label for="nombre">Nombre: </label>
+
+            <!--El atributo pattern es para regex -->
+            <!--Autofocus es para que empiece con el foco en el -->
+            <!--Required es para que el campo tenga que ser rellenado obligatoriamente antes de enviar el formulario-->
+        
+            <input type="text" name="nombre" id="nombre" 
+            pattern=".{3,10}" autofocus="autofocus"
+            placeholder="Minimo 3 letras maximo 10" required>
+            <br><br>
+
+
+            <label for="pass">Password: </label>
+
+            <input type="password" name="pass" id="pass" 
+            pattern=".{3,10}" autofocus="autofocus"
+            placeholder="Minimo 3 letras maximo 10" required>
+
+            <button id="verTexto">Ver</button>
+            <br>
+
+                
+
+            
+
+
+            <br><br>
+            <label for = "edad">Edad: </label>
+            <input type="number" name = "edad" id ="edad"
+            required placeholder="numero entre 0 y 99"
+            min="0"
+            max ="99"
+            step="0.5"
+            >
+            
+            <br><br>
+            <label for ="sexo">Sexo:</label>
+
+            <select name ="sexo" id ="sexo">
+                <option value ="h">Hombre</option>
+                <option value ="m">Mujer</option>
+                <option value ="se" selected>Otro(?)</option>
+
+
+            </select>
+
+        </fieldset>
+
+        <br><br>
+
+        <label for="deportes">Deportes: </label> <br><br>
+        <input type="checkbox" name ="deportes" id ="deportes" value ="1"> Surf <br>
+        <input type="checkbox" name ="deportes" id ="deportes" value ="2" checked> Quidditch <br>
+        <input type="checkbox" name ="deportes" id ="deportes" value ="3"> Jugger <br>
+        <input type="checkbox" name ="deportes" id ="deportes" value ="4"> Petanca <br><br>
+
+        <label for ="situacion">Situacion Laboral </label> <br><br>
+        <input type ="radio" name ="" id = "situacion" value = "0" checked>Trabajando <br>
+        <input type ="radio" name ="" id = "situacion" value = "1">Desempleado <br>
+
+        <br><br>
+
+        <label for="observaciones">Observaciones</label>
+        <textarea name="observaciones"id="observaciones" cols="50" rows="10"
+        placeholder="Tu opinion es muy importante para nosotros"></textarea>
+
+        <input type="submit" value="enviar">
+    </form>
+
+    <script src ="/Ejercicios/js/eventos.js"></script>
+            
+
+</body>
+</html>
