@@ -1,5 +1,5 @@
 
-
+/***********************************IMPORTS*****************************************************************/
 @import url("reset.css") screen;
 @import "normalize.css";
 @import "etiquetas.css" ;
@@ -7,29 +7,35 @@
 @import "layouts.css";
 @import "clases.css";
 @import "custom.css";
-
-
 @import "print.css" print;
 
-
+/***********************************RESET*****************************************************************/
 *{
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
+/***********************************KEYFRAME***************************************************************/
+@keyframes mymove{
+    from{
+        color: gray;
+    }
 
-table{
-   /* border: 1px solid black;
-    width: 20%;
-    position: absolute;
-    left: 40%;
-    top: 30%;
-    padding-left: 0%;*/
-    width: 50%;
-    margin: auto;
-
+    to{
+        color: red;
+    }
 }
+
+/***********************************NORMALIZE***************************************************************/
+
+
+
+/***********************************LAYOUTS*****************************************************************/
+
+
+
+/***********************************CLASSES*****************************************************************/
 
 .container{
     position: absolute;
@@ -37,7 +43,7 @@ table{
     height: 40%;
     width: 100%;
     background-color: brown;
-    z-index: 1;
+    /*z-index: 1;*/
 
 }
 
@@ -65,15 +71,114 @@ table{
 }
 
 .parallax{
+	position:relative;
+	left: 0;
     font-size: 16px;
     font-family:  Arial, sans-serif;
     background-image: url(../images/office.jpg);
     height:60%;
+    width: 100%;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: 1;
 }
+
+
+.box-animation{
+
+    position: absolute;
+    top: 30%;
+    width: 30%;
+    height: 30%;
+    background-color: blue;
+    animation: mymove 5s infinite;
+}
+
+
+.Espacio{
+	margin: 10px;
+	margin-top: 30%;
+    background-color: steelblue;
+    
+    height: 20%;
+ 
+}
+.nav-wrapper{
+	background-color: #0099CC;
+	padding: 20px;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
+.footer-wrapper{
+	position: fixed;
+	bottom: 0;
+	background-color: indigo;
+	padding: 20px;
+	width:100%;
+	height: 15%;
+}
+
+.tabla{
+	z-index: 1;
+}
+
+
+
+.Teacher{
+   /* position: absolute;
+    left: 25%;*/
+}
+
+/***********************************PSEUDOCLASSES************************************************************/
+
+
+.box-animation:hover{
+    color: red;
+    border-radius: 50%;
+    transition-duration: 3s;
+}
+
+
+
+
+td:hover{
+    color: blue;
+}
+
+nav>a:hover{
+	color: pink;
+	background-color: red;
+}
+
+/***********************************IDS**********************************************************************/
+
+#Cargar{
+	margin-left: 10px;	
+}
+
+/***********************************TAGS*********************************************************************/
+body{
+	margin-bottom: 10%;	
+}
+
+table{
+   /* border: 1px solid black;
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    padding-left: 0%;
+    width: 50%;
+    margin: auto;*/
+    display: block;
+    overflow-x: auto; 
+
+}
+
+
 h2{
     color: #09C;
     font-size: 16px;
@@ -91,64 +196,24 @@ tr{
     height: 50%;
 }
 
-td:hover{
-    color: blue;
-}
 
-.box-animation{
 
-    position: absolute;
-    top: 30%;
-    width: 30%;
-    height: 30%;
-    background-color: blue;
-    animation: mymove 5s infinite;
-}
-
-.box-animation:hover{
-    color: red;
-    border-radius: 50%;
-    transition-duration: 3s;
-}
-
-@keyframes mymove{
-    from{
-        color: gray;
-    }
-
-    to{
-        color: red;
-    }
-}
-
-.Espacio{
-	margin: 10px;
-	margin-top: 30%;
-    background-color: steelblue;
-    
-    height: 20%;
- 
-}
 section{
     background-color: rgb(105, 105, 189) ;
     margin: 10px;
     padding: 5px;
 }
 
-#Cargar{
-	margin-left: 10px;	
-}
-
-.nav-wrapper{
-	background-color: #0099CC;
-	padding: 20px;
-	position: sticky;
-	top: 0;
-}
-
 
 nav{
+	color: black;
+	display: flex;
+	justify-content: space-around;
+	z-index: 999;	
 	
+}
+
+nav{
 	max-width: 1024px;
 	margin: auto;
 }
@@ -160,12 +225,6 @@ main{
 	margin: auto;
 }
 
-.footer-wrapper{
-	position: fixed;
-	background-color: indigo;
-	padding: 20px;
-	width:100%;
-}
 
 footer{
 	
@@ -173,8 +232,21 @@ footer{
 	max-width: 1024px;
 }
 
+section>p{
+	line-height: 30px;
+	text-align: justify;
+}
 
-.Teacher{
-   /* position: absolute;
-    left: 25%;*/
+/***********************************LISTAS*********************************************************************/
+
+
+ol, ul, dl{
+	padding-left: 20px;
+	margin-top: 20px;
+	line-height: 25px;
+}
+
+
+li{
+	list-style-type: decimal;
 }

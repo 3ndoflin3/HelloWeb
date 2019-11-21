@@ -12,11 +12,8 @@
         <h3>Voluntario <span id="Voluntario">X</span></h3>
         <button onclick="buscarVoluntario()">Quien lee</button>
 
-    <main>
-        <nav>
-            <a href="html/animaciones.html">Animacion</a>
-        </nav>
-
+  
+       
         <h2>Basic HTML table</h2>
         <br><a target="_blank" href="https://www.w3schools.com/html/html_tables.asp">Documentacion y ejemplo</a>
     </div>
