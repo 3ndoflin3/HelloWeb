@@ -1,10 +1,21 @@
-/*@import url("reset.css") screen;*/
-@import "print.css" print;
+
+
+@import url("reset.css") screen;
 @import "normalize.css";
+@import "etiquetas.css" ;
+@import "animaciones.css";
+@import "layouts.css";
+@import "clases.css";
+@import "custom.css";
+
+
+@import "print.css" print;
+
 
 *{
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 
@@ -47,7 +58,7 @@ table{
     background-position: center;
     background-repeat: no-repeat;
     height: 60%;
-    z-index: 1;
+   /* z-index: 1;*/
 }
 .parallax h2{
     color: mediumvioletred;
@@ -127,6 +138,41 @@ section{
 #Cargar{
 	margin-left: 10px;	
 }
+
+.nav-wrapper{
+	background-color: #0099CC;
+	padding: 20px;
+	position: sticky;
+	top: 0;
+}
+
+
+nav{
+	
+	max-width: 1024px;
+	margin: auto;
+}
+
+
+main{
+	
+	max-width: 1024px;
+	margin: auto;
+}
+
+.footer-wrapper{
+	position: fixed;
+	background-color: indigo;
+	padding: 20px;
+	width:100%;
+}
+
+footer{
+	
+	margin: auto;
+	max-width: 1024px;
+}
+
 
 .Teacher{
    /* position: absolute;

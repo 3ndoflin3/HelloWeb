@@ -13,19 +13,20 @@
 
 	
 	
-    <title id = "Title">Inicio | <%=pagina %></title>
+    <title id = "Title">Inicio | <%=titulo %></title>
 </head>
 
 <body>
-
 	
-	<nav>
-		<ul>
-			<li><a href ="jsp/login.jsp">Login </a>
-			<li><a href  ="jsp/calculadora.jsp">Calculadora </a>
-			<li><a href = "https://es.wallapop.com/search?keywords=cafetera&min_sale_price=20&max_sale_price=50">Wallapop.</a>
-			<li><a href = "ejercicios/css/flexbox.jsp">Enlace para flexbox</a>
-		</ul>
-	</nav>.
+	<div class = "nav-wrapper">	
+		<nav>
+			<ul>
+				<li><a href ="jsp/login.jsp">Login </a>
+				<li><a href  ="jsp/calculadora.jsp">Calculadora </a>
+				<li><a href = "https://es.wallapop.com/search?keywords=cafetera&min_sale_price=20&max_sale_price=50">Wallapop.</a>
+				<li><a href = "ejercicios/css/flexbox.jsp">Enlace para flexbox</a>
+			</ul>
+		</nav>.
+	</div>
 	
 <main>
