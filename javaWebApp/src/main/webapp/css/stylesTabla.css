@@ -1,13 +1,13 @@
 
 /***********************************IMPORTS*****************************************************************/
-@import url("reset.css") screen;
+/*@import url("reset.css") screen;
 @import "normalize.css";
 @import "etiquetas.css" ;
 @import "animaciones.css";
 @import "layouts.css";
 @import "clases.css";
 @import "custom.css";
-@import "print.css" print;
+@import "print.css" print;*/
 
 /***********************************RESET*****************************************************************/
 *{
@@ -106,7 +106,8 @@
  
 }
 .nav-wrapper{
-	background-color: #0099CC;
+	/*background-color: #0099CC;*/
+	background-color: #0049d1;
 	padding: 20px;
 	position: sticky;
 	top: 0;
@@ -151,6 +152,7 @@ td:hover{
 nav>a:hover{
 	color: pink;
 	background-color: red;
+	cursor: crosshair;
 }
 
 /***********************************IDS**********************************************************************/
@@ -206,14 +208,11 @@ section{
 
 
 nav{
-	color: black;
+	
 	display: flex;
 	justify-content: space-around;
 	z-index: 999;	
-	
-}
 
-nav{
 	max-width: 1024px;
 	margin: auto;
 }
@@ -236,6 +235,19 @@ section>p{
 	line-height: 30px;
 	text-align: justify;
 }
+
+
+nav>a{
+	display: flex;
+	justify-content: space-around;
+	overflow: hidden;
+	background-color: #505dff;
+	padding: 0.4%;
+	border-radius: 10%;	
+	}
+
+
+
 
 /***********************************LISTAS*********************************************************************/
 

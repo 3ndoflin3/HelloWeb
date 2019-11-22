@@ -5,12 +5,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <base href="/helloweb/">
     
     <link rel="stylesheet" href="css/stylesTabla.css?time=<%System.currentTimeMillis();%>">
-	<link rel="stylesheet" href="ejercicios/css/responsivemenu.css" media="all" />
+	<!-- <link rel="stylesheet" href="ejercicios/css/responsivemenu.css" media="all" /> -->
 	
 	
     <title id = "Title">Inicio | <%=titulo %></title>
@@ -18,7 +18,7 @@
 
 <body>
 
-	<nav class="topnav" id="myTopnav">
+	<!-- <nav class="topnav" id="myTopnav">
 		<a href="#home" class="active">Home</a> <a href="#news">News</a> <a
 			href="#contact">Contact</a>
 		<div class="dropdown">
@@ -42,10 +42,10 @@
 				x.className = "topnav";
 			}
 		}
-	</script>
+	</script> -->
 
 
-<!-- 	
+	
 	<div class = "nav-wrapper">	
 		<nav>
 			
@@ -58,8 +58,9 @@
 				<a href = "http://www.indicedejuegos.com/">Juegos de mi epoca</a>
 	            <a href = "html/auxiliar.html">Viaja a la otra pagina</a>
 	            <a href="js/datatable.jsp">Datatable</a>
+	            <a href = "ekercicios/css/mediaqueries.jsp">Media Queries</a>
 			
 		</nav>
-	</div> -->
+	</div>
 	
 <main>

@@ -1,0 +1,50 @@
+/*
+CSS stylesheet
+@auto: kiryl
+@version: 1.0
+@tags: css, basic, etc...
+@license: mit
+*/
+
+
+/*Orden en CSS
+* 1. Reset
+* 2. @keyframes
+* 3. Todas las etiquetas estilos generales - normalize
+* 4. Layouts
+* 5. Clases para reutilizar 
+* 6. ID, cosas mas especificas
+* 7. @media queries
+*/
+
+
+/***********************************RESET*****************************************************************/
+
+
+
+
+
+/***********************************PARALLAX*****************************************************************/
+
+.parallax{
+	 background-image: url(../images/office.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60%;
+}
+
+
+.container{
+    position: absolute;
+    left: 0;
+    height: 40%;
+    width: 100%;
+    background-color: brown;
+    /*z-index: 1;*/
+
+}
+
+
+
