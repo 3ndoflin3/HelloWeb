@@ -1,0 +1,124 @@
+/*
+CSS stylesheet
+@auto: kiryl
+@version: 1.0
+@tags: css, basic, etc...
+@license: mit
+*/
+
+/***********************************RESET*****************************************************************/
+@import url("reset.css") screen;
+
+/***********************************NORMALIZE*****************************************************************/
+@import "normalize.css";
+
+/***********************************PRESET*****************************************************************/
+a{
+	text-decoration: none;
+	color:black;
+	
+}
+
+
+/***********************************PARALLAX*****************************************************************/
+
+.parallax{
+    left: 0;
+    top: 0;
+    height: 60vh;
+    width: 100vw;
+    margin:auto;
+	background-image: url(../images/office.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+}
+
+.parallax>h1{
+	margin: 0;
+	text-align: center;
+	color: #505dff;
+	font: 3em oblique;
+	padding: 5%;
+}
+
+
+/***********************************NAV-MENU*****************************************************************/
+
+.nav-wrapper{
+	/*background-color: #0099CC;*/
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100%;
+	margin: auto;
+	background-color: #0049d1;
+	padding: 20px;
+	z-index: 999;
+	color: black;
+}
+nav{
+	position:sticky;
+	display: flex;
+	justify-content: space-around;
+	z-index: 999;	
+
+	max-width: 1024px;
+	margin: auto;
+}
+nav>a{
+	overflow: hidden;
+	background-color: #505dff;
+	padding: 0.4%;
+	border-radius: 10%;	
+	}
+
+
+
+nav>a:hover{
+	color: pink;
+	background-color: red;
+	cursor: crosshair;
+}
+
+/***********************************RESPONSIVE-TABLE*****************************************************************/
+.tabla{
+	display: block;
+    overflow-x: auto;
+    padding: 5%;
+     }
+     
+     
+td {
+    border: 1px solid black; /*shorthand = abreviacion*/
+    width: 20%;
+    height: 40%;
+    text-align: center;
+}
+tr{
+    width: 50%;
+    height: 50%;
+}
+     
+    
+/***************************************FOOTER***********************************************************************/
+.footer-wrapper{
+	display: block;
+	background-color: #0049d1;
+
+}    
+
+footer>a{
+	display: flex;
+	justify-content: space-between;
+	overflow: hidden;
+	background-color: #505dff;
+	padding: 0.4%;
+	border-radius: 10%;		
+} 
+
+    
+    
+    
