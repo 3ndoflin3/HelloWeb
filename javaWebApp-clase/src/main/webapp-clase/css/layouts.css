@@ -1,0 +1,38 @@
+
+/* Layouts
+****************************************************************************/
+
+.nav-wrapper{
+	background-color: #0099CC;
+	padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+nav{
+    max-width: 1024px;
+    margin: auto;
+}
+
+
+
+main{    
+    max-width: 1024px;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.footer-wrapper{
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    border-top: 2px solid #0099CC;
+    background-color: #b8c4c7;	
+}
+
+footer{
+    max-width: 1024px;
+    margin: auto;
+}

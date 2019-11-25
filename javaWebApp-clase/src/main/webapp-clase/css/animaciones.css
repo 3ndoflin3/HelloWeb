@@ -1,0 +1,23 @@
+@keyframes animacion-redondeo {
+    from {
+        background-color: #0099CC;  
+        border-radius: 0;
+        left: 100%;
+        top: 100%;
+    }
+    to {
+        background-color:red;  
+        border-radius: 50%;
+        left: 0%;
+        top: 0;
+    }
+  }
+
+.box-animacion{
+    position: fixed;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background-color: #0099CC;  
+    animation: animacion-redondeo 3s infinite alternate;    
+}

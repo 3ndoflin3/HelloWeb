@@ -4,23 +4,25 @@
 	<meta charset="UTF-8" />
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no" >
 	
+	<!--ICON STYLESHEET -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" media="all" />
+	
 	
 	<!--  RESPONSIVE TABLE  -->
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"/>
-	
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/r-2.2.3/datatables.min.css"/>
+ 	
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>	
 	 
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>	
-			
+
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/r-2.2.3/datatables.min.js"></script>		
+	
 	<script type ="text/javascript" src="../js/responsive-table.js"></script>
 	
 	<link rel="stylesheet" href="../css/styles.css" media="all" />
 	<title>Document</title>
 		
 </head>
-<body>
+<body id ="inicio">
 	
 	
 	<!--CABECERA HASTA AQUI -->
@@ -54,15 +56,21 @@
     	
     	
     	
-        <h2>Cosas</h2>
-        <h3>Voluntario <span id="Voluntario">X</span></h3>
+       
+            <h2>Alumn@s Ipartek</h2>      
+            
+            <span class="fas fa-eye"></span>
+              
+            <h3>Voluntario <span id="Voluntario">....inerHTML es esto...</span></h3>
         <button onclick="buscarVoluntario()">Quien lee</button>
 
   
-       
+       <!-- 
         <h2>Basic HTML table</h2>
         <br><a target="_blank" href="https://www.w3schools.com/html/html_tables.asp">Documentacion y ejemplo</a>
-    	</div>
+    	 -->
+    	 
+    	 </div>
     
     
             <br>
@@ -114,42 +122,30 @@
                 </tbody>
             </table>
     
-    </main>
-    
-    
-    <!--FOOTER  -->
-    
-		
-		<div class="Espacio">
-		
-        </div>
+   
+    		<code><pre>
+                for (int i=0; i ;){
+                    otra linea;
+                }
+            </pre></code>
+            
+   
+   
+   		
+   
+   
+	    
+	    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius accusamus quia voluptatem et hic enim culpa optio doloribus totam amet at delectus commodi eligendi quisquam non a vel inventore libero.</p>
+	    <p>Laborum possimus rem fugiat repellendus fuga ipsa dolorum ab aut itaque cumque deleniti repudiandae esse expedita assumenda accusantium! Veniam quisquam in accusamus animi dolores sapiente aperiam alias corporis culpa hic?</p>
+	    <p>Iure recusandae veritatis corrupti odit cupiditate odio minima quia id delectus rerum dignissimos fugiat ut cumque nam dolore provident nemo. Accusamus quidem magnam ab qui repellendus perferendis repudiandae quos reprehenderit.</p>
+	    <p>At eum tenetur odio sapiente consequuntur culpa repudiandae eligendi incidunt atque harum cupiditate deserunt soluta consectetur ea accusamus aspernatur delectus fuga nostrum odit amet vitae libero dolore! At obcaecati ullam!</p>
+	    <p>Nihil vero deserunt quaerat itaque dolores a obcaecati similique nostrum nam laboriosam illo delectus! Quo nostrum ad culpa nisi blanditiis dolorem sequi ea dolor delectus deleniti a officiis quam obcaecati.</p>
+	    
+	    
+	    <br />
+	    <br />
+	    <br />
+	    
+	    
 
-		<div class ="footer-wrapper">
-	        <footer>
-		        
-			        <a href="mailto:rafa@gmail.com?Subject=Interesado%20en%20el%20curso">Contactar por correo</a>
-		            <a href="#Title" id ="end">Ir al Principio</a>
-		            <a href="tel:555-555-5555">Contactar por telefono</a>
-			        
-	        </footer>
-        </div>
-	        
-    <!-- FOOTER ICONS -->
-    <!--
-    
-    
-    <i class="fas fa-phone"></i>
-
-    
-    <i class="fas fa-at"></i>
-    
-    YOU NEED TO LINK:CSS (LINK BELOW)
-
-    https://cdnjs.com/libraries/font-awesome
-    
-    
-      -->
-    
-    
-</body>
-</html>
+<%@include file="../includes/pie.jsp" %>	

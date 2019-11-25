@@ -85,8 +85,11 @@ nav>a:hover{
 
 /***********************************RESPONSIVE-TABLE*****************************************************************/
 .tabla{
+	
 	display: block;
-    overflow-x: auto;
+	width: 50vw;
+	margin: auto;
+	overflow-x: auto;
     padding: 5%;
      }
      
@@ -102,23 +105,77 @@ tr{
     height: 50%;
 }
      
+     
+/***************************************CODE-PART***********************************************************************/
+code{
+	color: red;
+	text-align: center;
+}    
+    
+    
+    
+/***************************************TEXT<P>***********************************************************************/
+p{
+	text-align: justify;
+	margin-left: 10vw;
+	margin-right: 10vw;
+	padding-top: 5vh;
+	
+}   
+    
+    
     
 /***************************************FOOTER***********************************************************************/
 .footer-wrapper{
-	display: block;
+	display:  grid;
 	background-color: #0049d1;
-
+	width: 100vw;
+	height: 10vh;
 }    
 
+footer{
+	display: block;
+	height: 15vh;
+	
+}
+
+
+
 footer>a{
-	display: flex;
-	justify-content: space-between;
+	display: inline-block;
 	overflow: hidden;
 	background-color: #505dff;
 	padding: 0.4%;
 	border-radius: 10%;		
 } 
 
+/***************************************BOTON-RETORNO***********************************************************************/    
+    .boton-retorno {
+    right: 2%;
+    bottom: 5%;
+    position: fixed;
     
     
+	box-shadow: 0px 0px 0px 0px #3dc21b;
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Impact;
+	font-size:28px;
+	font-weight:bold;
+	padding:9px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.boton-retorno:hover {
+	background-color:#5cbf2a;
+}
+.boton-retorno:active {
+	
+}
+
+        
     

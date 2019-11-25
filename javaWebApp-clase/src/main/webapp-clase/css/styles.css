@@ -1,0 +1,32 @@
+/*
+  hoja de estilos
+  esto es un comentario de bloque
+  @auto: ander
+  @version: 1.0
+  @tags: css, basic, etc..
+  @licencia: mit
+  
+   1. reset
+   2. @keyframes
+   3. TODAS etiquetas estilos generales - normalizar
+   4. Layouts
+   5. clases 
+   6. ids cosas mas espeficicas => custom.css    
+
+*/
+
+
+@import url("reset.css");
+@import url("normalize.css");
+@import url("etiquetas.css");
+@import url("animaciones.css");
+@import url("layouts.css");
+@import url("clases.css");
+@import url("custom.css");
+
+@import url("impresora.css") print; /* solo para impresoras */
+
+
+
+
+
