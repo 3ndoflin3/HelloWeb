@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginController
@@ -43,7 +44,18 @@ public class LoginController extends HttpServlet {
 		String recuerdame = request.getParameter("recuerdame");
 		
 		//2. Logica de negocio
-		if("admin".equals(name) && "admin".equals(pass) && "1".equals(recuerdame) ) {
+		if("admin".equals(name) && "admin".equals(pass) ) {
+			
+			
+			//recuperar la sesion del usuario == browser
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("usuarioLogeado", "Administrador");
+			session.setAttribute("idioma", idioma);
+			session.setMaxInactiveInterval(-1); //5 seg poner la operacion 1 dia = 60*60*24
+			
+			
+			
 			String mensaje="";
 			switch(idioma) {
 			case "es":
@@ -67,10 +79,10 @@ public class LoginController extends HttpServlet {
 				
 			}
 			
-			vista = "LoginExito.jsp";
+			vista = "/jsp/LoginExito.jsp";
 		}
 		else {
-			vista = "LoginFallido.jsp";
+			vista = "/jsp/LoginFallido.jsp";
 		}
 		
 		request.getRequestDispatcher(vista).forward(request, response);
