@@ -80,6 +80,7 @@
 	            <a href="js/datatable.jsp">Datatable</a>
 	            <a href = "ejercicios/css/mediaqueries.jsp">Media Queries</a>
 	            <a href = "doge">Perros</a>
+	            <a href="doge2">Perros JSTL</a>
 			
 		</nav>
 	</div>
