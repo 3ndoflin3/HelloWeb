@@ -19,14 +19,14 @@ public class CalculadoraController extends HttpServlet {
      */
     public CalculadoraController() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doPost(request, response);
 	}
 
@@ -35,7 +35,7 @@ public class CalculadoraController extends HttpServlet {
 	 * @RequestMapping(value = "sumar", method=RequestMethod.POST)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 
 		calcular(request.getParameter("op"), request, response);	
 	

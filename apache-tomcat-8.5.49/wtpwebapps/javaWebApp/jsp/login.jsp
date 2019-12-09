@@ -1,4 +1,4 @@
-<%String pagina = "Login"; %>
+<%String titulo = "Login"; %>
 
 	
 <%@include file ="../includes/Cabecera.jsp" %>

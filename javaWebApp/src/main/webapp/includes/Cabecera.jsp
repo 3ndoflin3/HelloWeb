@@ -68,6 +68,7 @@
 	<div class = "nav-wrapper">	
 		<nav>
 			
+				<a href="index.jsp">Index</a>
 				<a href ="jsp/login.jsp">Login </a>
 				<a href="ejercicios/howto/top-menu-responsive.jsp">Menu responsive</a>
 				<a href  ="jsp/calculadora.jsp">Calculadora </a>
@@ -78,6 +79,7 @@
 	            <a href = "html/auxiliar.html">Viaja a la otra pagina</a>
 	            <a href="js/datatable.jsp">Datatable</a>
 	            <a href = "ejercicios/css/mediaqueries.jsp">Media Queries</a>
+	            <a href = "doge">Perros</a>
 			
 		</nav>
 	</div>

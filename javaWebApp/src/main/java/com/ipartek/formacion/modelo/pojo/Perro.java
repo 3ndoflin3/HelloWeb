@@ -13,11 +13,17 @@ public class Perro {
 		this.foto = "https://ih0.redbubble.net/image.445130512.1102/fposter,small,wall_texture,product,750x1000.u1.jpg";
 	}
 	
-	public Perro(int id, String nombre, String foto) {
-		super();
+	public Perro(String nombre) {
+		this(); //Calls himself to initialize other variables
+		this.nombre = nombre;
+	}
+	
+	
+	public Perro(int id, String nombre) {
+		this(); //Calls himself to initialize other variables
 		this.id = id;
 		this.nombre = nombre;
-		this.foto = foto;
+		
 	}
 	public int getId() {
 		return id;

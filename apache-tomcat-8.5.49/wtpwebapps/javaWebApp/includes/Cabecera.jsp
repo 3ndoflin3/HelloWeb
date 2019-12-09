@@ -18,6 +18,25 @@
 
 <body>
 
+	<section id="usuario">
+		<%
+			String usuario = (String)session.getAttribute("usuarioLogeado");
+			String idioma = (String)session.getAttribute("idioma");
+		
+			
+			if(usuario == null || idioma == null || session == null){ %>
+				<p>Por favor<a href="jsp/login.jsp"> inicia sesion</a></p>
+			<%}else{ %>
+
+				<p>Usuario: <%=usuario %></p>
+				<p>Idioma: <%=idioma %> </p>
+				<p><a href="logout">Cerrar sesion</a></p>
+				
+			<%}%>
+		
+	
+	</section>
+
 	<!-- <nav class="topnav" id="myTopnav">
 		<a href="#home" class="active">Home</a> <a href="#news">News</a> <a
 			href="#contact">Contact</a>
@@ -49,6 +68,7 @@
 	<div class = "nav-wrapper">	
 		<nav>
 			
+				<a href="index.jsp">Index</a>
 				<a href ="jsp/login.jsp">Login </a>
 				<a href="ejercicios/howto/top-menu-responsive.jsp">Menu responsive</a>
 				<a href  ="jsp/calculadora.jsp">Calculadora </a>
@@ -58,7 +78,8 @@
 				<a href = "http://www.indicedejuegos.com/">Juegos de mi epoca</a>
 	            <a href = "html/auxiliar.html">Viaja a la otra pagina</a>
 	            <a href="js/datatable.jsp">Datatable</a>
-	            <a href = "ekercicios/css/mediaqueries.jsp">Media Queries</a>
+	            <a href = "ejercicios/css/mediaqueries.jsp">Media Queries</a>
+	            <a href = "doge">Perros</a>
 			
 		</nav>
 	</div>
