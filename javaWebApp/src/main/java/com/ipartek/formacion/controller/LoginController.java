@@ -1,6 +1,9 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -79,13 +82,14 @@ public class LoginController extends HttpServlet {
 				
 			}
 			
-			vista = "/jsp/LoginExito.jsp";
+			vista = "jsp/LoginExito.jsp";
 		}
 		else {
-			vista = "/jsp/LoginFallido.jsp";
+			vista = "jsp/LoginFallido.jsp";
 		}
 		
-		request.getRequestDispatcher(vista).forward(request, response);
+		response.sendRedirect("/helloweb/index.jsp");
+		//request.getRequestDispatcher(vista).forward(request, response);
 	}
 
 }

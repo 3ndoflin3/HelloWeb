@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +34,8 @@ public class LogoutController extends HttpServlet {
 		session.invalidate();
 		session = null;
 		
-		response.sendRedirect("/helloweb/jsp/index.jsp");
+		
+		response.sendRedirect("/helloweb/index.jsp");
 		//request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
 		
 	}

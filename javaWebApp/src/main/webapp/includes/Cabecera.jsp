@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html lang="en">
 
 <head>
@@ -25,7 +30,7 @@
 		
 			
 			if(usuario == null || idioma == null || session == null){ %>
-				<p>Por favor<a href="jsp/login.jsp"> inicia sesion</a></p>
+				<p>Por favor<a href="login"> inicia sesion</a></p>
 			<%}else{ %>
 
 				<p>Usuario: <%=usuario %></p>
@@ -33,6 +38,9 @@
 				<p><a href="logout">Cerrar sesion</a></p>
 				
 			<%}%>
+		
+	
+		<p>Usuarios Conectados ${applicationScope.numeroUsuariosConectados }</p>
 		
 	
 	</section>
