@@ -1,5 +1,6 @@
 <%String titulo = "Login"; %>
 
+<%@ page errorPage="/error/error505.jsp" %>
 	
 <%@include file ="../includes/Cabecera.jsp" %>
 
@@ -10,7 +11,9 @@
 <body background="/images/fondoform.jfif">
     
  -->
-
+<% 	Object o = null; 
+	o.toString(); 
+%>
 
     <h1>Inicia sesion</h1>
 
@@ -72,6 +75,16 @@
 
 <%
 	String mensaje = (String) request.getAttribute("mensaje");
-
+	
+	if(mensaje == null){
+		mensaje = (String) request.getParameter("mensaje");
+	}
+	
+	if(mensaje!=null){
+		%>
+		<p style ="color: red;">${mensaje}</p>
+		
+		<% request.setAttribute("mensaje", "");
+	}
 	
 %>

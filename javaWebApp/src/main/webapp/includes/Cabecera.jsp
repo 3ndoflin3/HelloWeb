@@ -12,8 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <base href="/helloweb/">
-    
+   <!--  <base href="/helloweb/"> -->
+    <base href="${pageContext.request.contextPath}/"></base>
     <link rel="stylesheet" href="css/stylesTabla.css?time=<%System.currentTimeMillis();%>">
 	<!-- <link rel="stylesheet" href="ejercicios/css/responsivemenu.css" media="all" /> -->
 	
@@ -38,8 +38,11 @@
 				<p><a href="logout">Cerrar sesion</a></p>
 				
 			<%}%>
-		
-	
+	<%-- TODO WITH JSLT 
+	<c:if test="${not empty usuarioLogeado}">
+		<p>El usuario logeado es: ${usuarioLogeado}</p>
+	</c:if>	
+	 --%>
 		<p>Usuarios Conectados ${applicationScope.numeroUsuariosConectados }</p>
 		
 	

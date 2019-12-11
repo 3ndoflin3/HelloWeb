@@ -1,29 +1,31 @@
-package com.ipartek.formacion.controller;
+package com.ipartek.formacion.controller.privado;
 
 import java.io.IOException;
-import java.net.URLEncoder;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class BackofficeHomeController
  */
-@WebServlet("/logout")
-public class LogoutController extends HttpServlet {
+@WebServlet({"/private/home", "/private/home/"})
+public class BackofficeHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BackofficeHomeController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doPost(request, response);
 	}
 
@@ -31,14 +33,10 @@ public class LogoutController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		session = null;
-		String base = "/" + request.getContextPath() + "/";
-		String mensaje = "Gracias por visitarnos";
-		//response.sendRedirect(base +"index.jsp?mensaje=" + URLEncoder.encode(mensaje, "UTF-8"));
-		request.getRequestDispatcher("index.jsp?mensaje=" + URLEncoder.encode(mensaje, "UTF-8")).forward(request, response);
 		
+		request.setAttribute("mensaje", "Controlador privado");
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }

@@ -9,6 +9,9 @@
 <body>
 	
 	<!-- INDEX PRIVADO PARA PODER ACCEDER A EL TRAS EL LOGIN -->
+	<p>Estoy en el backoffice</p>
+	<p style="color = red;">Solo pueden acceder los usuarios logeados</p>
+	${mensaje}
 	
 	
 </body>
