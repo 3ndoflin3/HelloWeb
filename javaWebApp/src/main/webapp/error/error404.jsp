@@ -14,9 +14,14 @@
 	<p>Envia un <a href="mailto:admin@ipartek.com">email al administrador </a>para que lo arregle</p>
 	<%-- <p>Causa <%=exception.getCause() %></p> --%>
 	<p>Mensaje </p>
+	<!-- Stack trace -->
+	<pre>
+		<%-- <jsp:scriptlet>
+	  	exception.printStackTrace(new java.io.PrintWriter(out));
+		</jsp:scriptlet> --%>
+	</pre>
+	<!-- <textarea name="" id="" cols="80" rows="20">
 	
-	<textarea name="" id="" cols="80" rows="20">
-	
-	</textarea>
+	</textarea> -->
 </body>
 </html>

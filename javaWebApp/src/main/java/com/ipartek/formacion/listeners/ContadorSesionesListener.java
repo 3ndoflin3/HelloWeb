@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 public class ContadorSesionesListener implements HttpSessionAttributeListener {
 
 	private final Logger LOG=Logger.getLogger(this.getClass().getName());
-	
+	private int numeroIntentosFallidos = 0;
 	public void attributeAdded(HttpSessionBindingEvent event)  { 
 		
 		LOG.debug("attributeAdded " + event.getName() + " " + event.getValue());
@@ -30,6 +30,8 @@ public class ContadorSesionesListener implements HttpSessionAttributeListener {
 			int numeroUsuarios = (int) ((applicationScope.getAttribute("numeroUsuariosConectados")==null)? 0 : applicationScope.getAttribute("numeroUsuariosConectados"));
 			numeroUsuarios++;
 			applicationScope.setAttribute("numeroUsuariosConectados", numeroUsuarios);
+    	}else {
+    		numeroIntentosFallidos += 1; 
     	}
 	    	
     }

@@ -11,9 +11,9 @@
 <body background="/images/fondoform.jfif">
     
  -->
-<% 	Object o = null; 
+<%-- <% 	Object o = null; 
 	o.toString(); 
-%>
+%> --%>
 
     <h1>Inicia sesion</h1>
 
