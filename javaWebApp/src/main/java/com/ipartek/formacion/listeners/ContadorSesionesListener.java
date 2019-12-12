@@ -16,22 +16,22 @@ import org.apache.log4j.Logger;
 public class ContadorSesionesListener implements HttpSessionAttributeListener {
 
 	private final Logger LOG=Logger.getLogger(this.getClass().getName());
-	private int numeroIntentosFallidos = 0;
+	
 	public void attributeAdded(HttpSessionBindingEvent event)  { 
-		
+		ServletContext applicationScope = event.getSession().getServletContext();
 		LOG.debug("attributeAdded " + event.getName() + " " + event.getValue());
 		
     	if("usuarioLogeado".equals(event.getName())) {
     		//recuperar del ambito de session los usuarios y añadir el nuevo usuario
 			// ServletContext == applicationScope en la JSP
-			ServletContext applicationScope = event.getSession().getServletContext();
+			//ServletContext applicationScope = event.getSession().getServletContext();
 			
 			//ArrayList<String> usuarios = (ArrayList<String>) applicationScope.getAttribute("usuariosConectados");
 			int numeroUsuarios = (int) ((applicationScope.getAttribute("numeroUsuariosConectados")==null)? 0 : applicationScope.getAttribute("numeroUsuariosConectados"));
 			numeroUsuarios++;
 			applicationScope.setAttribute("numeroUsuariosConectados", numeroUsuarios);
     	}else {
-    		numeroIntentosFallidos += 1; 
+    		
     	}
 	    	
     }

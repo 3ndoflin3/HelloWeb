@@ -44,7 +44,7 @@
 	</c:if>	
 	 --%>
 		<p>Usuarios Conectados ${applicationScope.numeroUsuariosConectados }</p>
-		
+		<p>Intentos de inicio de sesion fallidos ${applicationScope.numeroIntentosFallidos}</p>
 	
 	</section>
 
