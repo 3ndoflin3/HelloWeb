@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller.filter;
 
 import java.io.IOException;
+import java.util.HashSet;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -46,13 +48,21 @@ public class SeguridadFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
+		applicationScope = req.getServletContext();
 		LOG.debug("RequestURL" + req.getRequestURL());
 		LOG.debug("RequestURI" + req.getRequestURI());
 		LOG.debug("RequestURL" + req.getProtocol());
 		LOG.debug("HTTP Protocol " + req.getProtocol());
 		LOG.debug("HTTP RemoteAddr " + req.getRemoteAddr());
 		LOG.debug("HTTP RemoteHost " + req.getRemoteHost());
+		
+		
+		String ipCliente = req.getRemoteHost();
+		
+		
+		HashSet<String> ips = (HashSet<String>) applicationScope.getAttribute("ips");
+		ips.add(ipCliente);
+		
 		
 		
 		HttpSession session = req.getSession();
@@ -64,10 +74,16 @@ public class SeguridadFilter implements Filter {
     		numeroIntentosFallidos += 1; 
     					
 		}else {
+			
+			
 			//Dejamos continuar
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		}
+		
+		
+		applicationScope.setAttribute("numeroIntentosFallidos", numeroIntentosFallidos);
+		applicationScope.setAttribute("ips", new HashSet<String>());
 		
 	}
 
@@ -79,6 +95,7 @@ public class SeguridadFilter implements Filter {
 		numeroIntentosFallidos = 0;
 		applicationScope = fConfig.getServletContext();
 		applicationScope.setAttribute("numeroIntentosFallidos", numeroIntentosFallidos);
+		applicationScope.setAttribute("ips", new HashSet<String>());
 
 	}
 
