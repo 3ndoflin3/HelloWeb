@@ -7,13 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class ValidationController
  */
 @WebServlet("/validar")
 public class ValidationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private final static Logger LOG = Logger.getLogger(ValidationController.class);
     
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +41,7 @@ public class ValidationController extends HttpServlet {
 		//request.setAttribute("valor", "K kiere ase");
 		
 		request.getRequestDispatcher("/jsp/visualizardatos.jsp").forward(request, response);
+		
 	}
 	
 	

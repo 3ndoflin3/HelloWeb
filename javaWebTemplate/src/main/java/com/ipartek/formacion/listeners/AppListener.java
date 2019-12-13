@@ -36,16 +36,16 @@ public class AppListener implements ServletContextListener {
     	hmDeportes.put("7", "Soffing");
     	
     	Set<String> keyDeportes = hmDeportes.keySet();
-    	List<String> valueDeportes = (List<String>) hmDeportes.values();
+    	//List<String> valueDeportes = (List<String>) hmDeportes.values();
     	
     	String[] keysDeportes, valuesDeportes;
     	
-    	keysDeportes = (String[]) keyDeportes.toArray();
-    	valuesDeportes = (String[]) valueDeportes.toArray();  
+    	//keysDeportes = (String[]) keyDeportes.toArray();
+    	//valuesDeportes = (String[]) valueDeportes.toArray();  
     	
     	
-    	sc.setAttribute("keyDeportes", keysDeportes);
-    	sc.setAttribute("valuesDeportes", valuesDeportes);
+    	//sc.setAttribute("keyDeportes", keysDeportes);
+    	//sc.setAttribute("valuesDeportes", valuesDeportes);
     }
 	
 }

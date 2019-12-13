@@ -49,6 +49,14 @@
 				<input type="checkbox" name="deporte" value ="jugger"/> Jugger
 			</label>
 			<br />
+			
+			<select name="sexo" >
+				<option value="h">Hombre</option>
+				<option value="m">Mujer</option>
+				<option value="i">Helicoptero de Combate</option>
+			</select>
+			
+			
 			<input type="submit" value="Registrarse" />
 		</div>
 		
@@ -56,7 +64,7 @@
 	
 	
 	
-	<% String[] keyDeportes = request.getAttribute("keyDeportes");
+	<% /* String[] keyDeportes = request.getAttribute("keyDeportes"); */
 	
 	%>
 	
