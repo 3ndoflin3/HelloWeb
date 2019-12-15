@@ -6,10 +6,12 @@ String mensaje = String.valueOf(request.getParameter("mensaje"));
 <%@page import="com.ipartek.formacion.modelo.pojo.Perro"%>
 <%@page import="java.util.ArrayList"%>
 <%@include file ="../includes/Cabecera.jsp" %>
-<style>img{
+<style>
+img{
 	width: 10vw;
 	height: 20vh;
-}</style>
+}
+</style>
 <h1>Perroz</h1>
 
 

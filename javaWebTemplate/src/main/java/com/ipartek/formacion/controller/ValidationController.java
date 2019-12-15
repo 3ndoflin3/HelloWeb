@@ -38,7 +38,7 @@ public class ValidationController extends HttpServlet {
 		request.setAttribute("nombre", nombre);
 		request.setAttribute("email", email);
 		request.setAttribute("deporte", deporte);
-		//request.setAttribute("valor", "K kiere ase");
+		request.setAttribute("valor", "K kiere ase");
 		
 		request.getRequestDispatcher("/jsp/visualizardatos.jsp").forward(request, response);
 		

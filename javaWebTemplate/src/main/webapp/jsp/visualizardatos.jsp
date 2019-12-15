@@ -14,7 +14,11 @@
 	<p>Datoz: ${valor}</p>
 	<p>Nombre: ${nombre}</p>
 	<p>Email: ${email}</p>
-	<p>Me gustan estos deportes: ${deporte}</p>
+	<p>Me gustan estos deportes: <%
+	String[] deporte = request.getAttribute("deporte");
+	for(String deportes: deporte){
+		
+	} %></p>
 	
 	
 	
