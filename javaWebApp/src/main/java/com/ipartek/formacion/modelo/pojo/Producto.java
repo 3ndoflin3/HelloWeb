@@ -76,6 +76,19 @@ public class Producto {
 	public void setDescuento(String descuento) {
 		this.descuento = descuento;
 	}
+
+	
+	public float getPrecioProducto() {
+		float desc = Float.parseFloat(this.descuento);
+		float presio = Float.parseFloat(this.precio);
+		return presio-((desc/100)*presio);
+	}
+	
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", descuento=" + descuento + "]";
+	}
 	
 	
 

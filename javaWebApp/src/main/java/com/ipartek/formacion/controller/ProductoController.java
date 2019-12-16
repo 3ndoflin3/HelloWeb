@@ -19,20 +19,37 @@ import com.ipartek.formacion.modelo.pojo.Producto;
 @WebServlet("/producto")
 public class ProductoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<Producto> listaProductos = new ArrayList<>();
+	private List<Producto> listaProductos;
+	private int estado = 0;
 	
-//	public void init(ServletConfig config) throws ServletException {
-//		
-//		
-//	}
+	public void init(ServletConfig config) throws ServletException {
+		listaProductos = new ArrayList<>();
+		
+	}
 
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		listaProductos.clear(); 
+	}
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//TODO visualizar contenido
-		Producto p = new Producto( request.getParameter("id"), request.getParameter("nombre"), request.getParameter("imagen"), request.getParameter("descripcion"), request.getParameter("precio"), request.getParameter("descuento"));
-		listaProductos.add(p);
-		request.setAttribute("listaProductos", listaProductos);
-		request.getRequestDispatcher("/jsp/visualizar-productos.jsp").forward(request, response);
+		
+		//if(estado ==1) {
+			//TODO visualizar contenido
+			Producto p = new Producto( request.getParameter("id"), 
+					request.getParameter("nombre"), request.getParameter("imagen"), request.getParameter("descripcion"), 
+					request.getParameter("precio"), request.getParameter("descuento"));
+			
+			listaProductos.add(p);
+			estado =0;
+				
+		//}
+		//request.setAttribute("listaProductos", listaProductos);
+		response.sendRedirect("jsp/visualizar-productos.jsp");
+		//request.getRequestDispatcher("/jsp/visualizar-productos.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,15 +73,19 @@ public class ProductoController extends HttpServlet {
 			
 			
 			if(descuento <= 100 && descuento >= 0 ) {
-				request.setAttribute("precio", precio);
-				request.setAttribute("descuento", descuento);
+//				request.setAttribute("precio", precio);
+//				request.setAttribute("descuento", descuento);
 				/** Si llamo al servlet otra vez, llamo al metodo post con una nueva request
 				 * y el Servlet no sabe de donde le viene la peticion. Asi que, hago que vaya 
 				 * al metodo get.
 				 * @see https://community.oracle.com/thread/1476142
 				 * */
+				//estado = 1;
 				doGet(request, response);
-				//request.getRequestDispatcher("helloweb/producto").forward(request, response);				
+				//request.getRequestDispatcher("helloweb/producto").forward(request, response);		
+				
+				//response.sendRedirect("producto");
+				
 				
 			}else {
 				request.setAttribute("precio", precio);

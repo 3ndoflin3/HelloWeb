@@ -17,7 +17,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String USUARIO = "admin";   
+    private static final String PASSWORD= "admin";   
+   
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -25,7 +27,7 @@ public class LoginController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//TODO POJO y DAO usuario
 		String vista = "";
 		//1. Recibir parametros
 		String name = request.getParameter("name");
@@ -34,7 +36,7 @@ public class LoginController extends HttpServlet {
 		String recuerdame = request.getParameter("recuerdame");
 		
 		//2. Logica de negocio
-		if("admin".equals(name) && "admin".equals(pass) ) {
+		if(USUARIO.equals(name) && PASSWORD.equals(pass) ) {
 			
 			
 			//recuperar la sesion del usuario == browser
@@ -42,7 +44,7 @@ public class LoginController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("usuarioLogeado", "Administrador");
 			session.setAttribute("idioma", idioma);
-			session.setMaxInactiveInterval(-1); //5 seg poner la operacion 1 dia = 60*60*24
+			session.setMaxInactiveInterval(60*3); //5 seg poner la operacion 1 dia = 60*60*24
 			
 			
 			
@@ -73,6 +75,7 @@ public class LoginController extends HttpServlet {
 			response.sendRedirect(base + vista);
 		}
 		else {
+			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO__DANGER, "Credenciales incorrectas, prueba de nuevo");
 			vista = "jsp/LoginFallido.jsp";
 			request.getRequestDispatcher(vista).forward(request, response);
 		}

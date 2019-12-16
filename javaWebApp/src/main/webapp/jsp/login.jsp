@@ -17,60 +17,71 @@
 
     <h1>Inicia sesion</h1>
 
-    <form action="login" method="post">
-        <fieldset>
-            <legend>Login </legend>
-            <br> <br>
-            <input type ="text" name="name" id="name" placeholder="Nombre">
-            <br> <br>
-            <input type = "password" name ="pass" id ="pass" placeholder="Contraseña ">
-           
-           <i class="fas fa-eye"></i>
-           <!--  <button id="verTexto" > <img src="images/eye.jfif" ></button> -->
-            <br> <br>
+	<div class="row justify-content-center">
+		<div class="col-6 mt-3">
+			<form action="login" method="post">
+		        <fieldset>
+		            <legend>Login </legend>
+		            <br> <br>
+		            <input type ="text" name="name" id="name" placeholder="Nombre" required autofocus>
+		            <br> <br>
+		            <input type = "password" name ="pass" id ="pass" placeholder="Contraseña " required >
+		           
+		           <i class="fas fa-eye"></i>
+		           <!--  <button id="verTexto" > <img src="images/eye.jfif" ></button> -->
+		            <br> <br>
+		
+		            <!--**********************CHECKBOX*********************-->
+		
+		
+		            <!--
+		            <input type = "checkbox" name ="Español" id ="Español" value="1"> Español <br>
+		            <input type = "checkbox" name ="Ingles" id ="Ingles" value="2"> Ingles <br>
+		            <input type = "checkbox" name ="Catalan" id ="Catalan" value="3"> Catalan <br>
+		            <input type = "checkbox" name ="Gallego" id ="Gallego" value="4"> Gallego <br>
+		            <input type = "checkbox" name ="Euskera" id ="Euskera" value="5"> Euskera <br>
+		            <input type = "checkbox" name ="Andaluz" id ="Andaluz" value="6"> Andaluz <br>
+		            
+		        -->
+		            <select name ="idioma" id ="idioma">
+		
+		                <option value ="es">Español</option>
+		                <option value ="en">Ingles</option>
+		                <option value ="cat" selected>Catalan</option>
+		                <option value = "eu">Euskera</option>
+		
+		
+		            </select>
+		            
+		
+		            <br> <br> <br>
+		            <input type = "checkbox" name ="remember" id = "remember" class="d-block"> Recuerdame
+		
+		
+		            <br><br>
+		
+		            <input type ="submit" value ="Entrar">
+		
+		        </fieldset>
+		
+			
+		
+		        <script src="js/eventos.js"></script>
+		
+		    </form>
 
-            <!--**********************CHECKBOX*********************-->
+		</div>
+	</div>
 
+		    	
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-            <!--
-            <input type = "checkbox" name ="Español" id ="Español" value="1"> Español <br>
-            <input type = "checkbox" name ="Ingles" id ="Ingles" value="2"> Ingles <br>
-            <input type = "checkbox" name ="Catalan" id ="Catalan" value="3"> Catalan <br>
-            <input type = "checkbox" name ="Gallego" id ="Gallego" value="4"> Gallego <br>
-            <input type = "checkbox" name ="Euskera" id ="Euskera" value="5"> Euskera <br>
-            <input type = "checkbox" name ="Andaluz" id ="Andaluz" value="6"> Andaluz <br>
-            
-        -->
-            <select name ="idioma" id ="idioma">
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-                <option value ="es">Español</option>
-                <option value ="en">Ingles</option>
-                <option value ="cat" selected>Catalan</option>
-                <option value = "eu">Euskera</option>
-
-
-            </select>
-            
-
-            <br> <br> <br>
-            <input type = "checkbox" name ="remember" id = "remember"> Recuerdame
-
-
-            <br><br>
-
-            <input type ="submit" value ="Entrar">
-
-        </fieldset>
-
-	
-
-        <script src="js/eventos.js"></script>
-
-    </form>
-
-
-
-	
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <%@include file ="../includes/Contacto.jsp" %>
 
 <%

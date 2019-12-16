@@ -12,41 +12,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	
    <!--  <base href="/helloweb/"> -->
     <base href="${pageContext.request.contextPath}/"></base>
     <link rel="stylesheet" href="css/stylesTabla.css?time=<%System.currentTimeMillis();%>">
 	<!-- <link rel="stylesheet" href="ejercicios/css/responsivemenu.css" media="all" /> -->
-	
+	<!-- Latest compiled and minified CSS -->
+	<style>
+		a{
+		color: black;
+		}
+	</style>
 	
     <title id = "Title">Inicio | <%=titulo %></title>
 </head>
 
 <body>
-
-	<section id="usuario">
-		<%
-			String usuario = (String)session.getAttribute("usuarioLogeado");
-			String idioma = (String)session.getAttribute("idioma");
-		
-			
-			if(usuario == null || idioma == null || session == null){ %>
-				<p>Por favor<a href="login"> inicia sesion</a></p>
-			<%}else{ %>
-
-				<p>Usuario: <%=usuario %></p>
-				<p>Idioma: <%=idioma %> </p>
-				<p><a href="logout">Cerrar sesion</a></p>
-				
-			<%}%>
-	<%-- TODO WITH JSLT 
-	<c:if test="${not empty usuarioLogeado}">
-		<p>El usuario logeado es: ${usuarioLogeado}</p>
-	</c:if>	
-	 --%>
-		<p>Usuarios Conectados ${applicationScope.numeroUsuariosConectados }</p>
-		<p>Intentos de inicio de sesion fallidos ${applicationScope.numeroIntentosFallidos}</p>
 	
-	</section>
+	<%-- 
+	<c:if test="${ empty usuarioLogeado }">
+		</c:if>
+		usarlo en vez de el if 
+		 --%>
+		<%-- 
+		<c:if test="${not empty usuarioLogeado }">
+		href="seguridad/productos?accion=listar" los proximos parametros irian separados con &, el primero siempre con ?
+												 se usa para mandar diferentes parametros al controlador
+			</c:if>
+		usarlo en vez de el if 
+		 --%>
+		<section id="usuario">
+		
+		
+		<c:if test="${ empty usuarioLogeado }">
+			</c:if>
+			
+			
+			<c:if test="${not empty usuarioLogeado }">
+			
+			<a href="seguridad/productos?accion=listar">Listar</a> 
+			<a href="seguridad/productos?accion=tabla">Tabla</a> 
+			<!-- <a href="seguridad/productos?accion=listar"></a> --> 
+								
+			</c:if>
+			
+		
+			<%-- <%
+				String usuario = (String)session.getAttribute("usuarioLogeado");
+				String idioma = (String)session.getAttribute("idioma");
+			
+				
+				if(usuario == null || idioma == null || session == null){ %>
+					<p>Por favor<a href="login"> inicia sesion</a></p>
+				<%}else{ %>
+	
+					<p>Usuario: <%=usuario %></p>
+					<p>Idioma: <%=idioma %> </p>
+					<p><a href="logout">Cerrar sesion</a></p>
+					
+				<%}%>
+		TODO WITH JSLT 
+		<c:if test="${not empty usuarioLogeado}">
+			<p>El usuario logeado es: ${usuarioLogeado}</p>
+		</c:if>	
+		 --%>
+			<p>Usuarios Conectados ${applicationScope.numeroUsuariosConectados }</p>
+			<p>Intentos de inicio de sesion fallidos ${applicationScope.numeroIntentosFallidos}</p>
+		
+		</section>
+	
 
 	<!-- <nav class="topnav" id="myTopnav">
 		<a href="#home" class="active">Home</a> <a href="#news">News</a> <a
@@ -92,8 +127,19 @@
 	            <a href = "ejercicios/css/mediaqueries.jsp">Media Queries</a>
 	            <a href = "doge">Perros</a>
 	            <a href="doge2">Perros JSTL</a>
+	            <a href="jsp/producto.jsp">Add Producto</a>
+	            <a href="jsp/visualizar-productos.jsp">Ver Productos</a>
 			
 		</nav>
 	</div>
 	
-<main>
+<main class="container">
+
+	<c:if test="${not empty mensajeAlerta }">
+		<div class="alert alert-${mensajeAlerta.tipo} alert-dismissible fade show mt-3" role ="alert">
+		${mensajeAlerta.texto }
+		<button type="button" data-dismiss="alert" class="close" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+	</c:if>

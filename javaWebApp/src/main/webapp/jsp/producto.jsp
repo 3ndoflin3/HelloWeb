@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="style.css" media="all" />
-<title>Crud producto</title>
-</head>
-<body>
-	
-	<main>
+<%String titulo ="Productos"; %>	
+<%@include file ="../includes/Cabecera.jsp" %>
+
 		<form action="../producto" method ="POST">
 			
 			<fieldset>
