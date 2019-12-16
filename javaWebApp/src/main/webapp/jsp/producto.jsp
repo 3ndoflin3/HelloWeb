@@ -10,11 +10,11 @@
 <body>
 	
 	<main>
-		<form action="../product" method ="POST">
+		<form action="../producto" method ="POST">
 			
 			<fieldset>
-				<p style="color:red;">${mensaje }</p>
-				 <legend>Introducir datos del producto</legend>
+				<p style="color:red;">${mensaje}</p>
+				<legend>Introducir datos del producto</legend>
 				
 				<label for="id">ID: </label>
 				<input type="text" name ="id" placeholder="Introduce el ID del producto" value="${id}"/>
