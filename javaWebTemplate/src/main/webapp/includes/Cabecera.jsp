@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 
 <head>
@@ -8,17 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no" >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <base href="/javaWebTemplate/">
-    
-    <link rel="stylesheet" href="/helloweb/css/stylesTabla.css?time=<%System.currentTimeMillis();%>">
-	<!-- <link rel="stylesheet" href="ejercicios/css/responsivemenu.css" media="all" /> -->
+    	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+   	<link rel="stylesheet" href="/css/Viper.css" media="all" />
 	
 	
-    <title id = "Title">Inicio | <%=titulo %></title>
+    <title id = "Title"><%=titulo %></title>
 </head>
 
 <body>
 
-	<section id="usuario">
+	<%-- <section id="usuario">
 		<%
 			String usuario = (String)session.getAttribute("usuarioLogeado");
 			String idioma = (String)session.getAttribute("idioma");
@@ -35,47 +36,26 @@
 			<%}%>
 		
 	
-	</section>
+	</section> --%>
 
-	<!-- <nav class="topnav" id="myTopnav">
-		<a href="#home" class="active">Home</a> <a href="#news">News</a> <a
-			href="#contact">Contact</a>
-		<div class="dropdown">
-			<button class="dropbtn">
-				Dropdown <i class="fa fa-caret-down"></i>
-			</button>
-			<div class="dropdown-content">
-				<a href="#">Link 1</a> <a href="#">Link 2</a> <a href="#">Link 3</a>
-			</div>
-		</div>
-		<a href="#about">About</a> <a href="javascript:void(0);"
-			style="font-size: 15px;" class="icon" onclick="myFunction()">&#9776;</a>
-	</nav>
-
-	<script>
-		function myFunction() {
-			var x = document.getElementById("myTopnav");
-			if (x.className === "topnav") {
-				x.className += " responsive";
-			} else {
-				x.className = "topnav";
-			}
-		}
-	</script> -->
+	
 
 
 	
-	<div class = "nav-wrapper">	
-		<nav>
+	<div class = "row justify-content-center">	
+		<nav class = "col-lg-6 mt-4">
+			<c:if test="${not isLogged}">
+					<a href ="jsp/login.jsp">Login </a>
+			</c:if>
 			
-				<a href ="jsp/login.jsp">Login </a>
-				<a href="ejercicios/howto/top-menu-responsive.jsp">Menu responsive</a>
-				<a href  ="jsp/calculadora.jsp">Calculadora </a>
-				<a href = "https://es.wallapop.com/search?keywords=cafetera&min_sale_price=20&max_sale_price=50">Wallapop.</a>
-				<a href = "ejercicios/css/flexbox.jsp">Enlace para flexbox</a>
+			<c:if test="${isLogged}">
+					<a href ="jsp/logout.jsp">Logout </a>
+			</c:if>
+			
+			
 				<a href="html/animaciones.html">Animacion</a>
 				<a href = "http://www.indicedejuegos.com/">Juegos de mi epoca</a>
-	            <a href = "html/auxiliar.html">Viaja a la otra pagina</a>
+	            <a href = "jsp/formulario.jsp">Registrar producto</a>
 	            <a href="js/datatable.jsp">Datatable</a>
 	            <a href = "ejercicios/css/mediaqueries.jsp">Media Queries</a>
 			

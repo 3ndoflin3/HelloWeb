@@ -70,9 +70,7 @@ public class DogeController extends HttpServlet {
 		//request.getRequestDispatcher("/jsp/Doges.jsp").forward(request, response);
 	}
 	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.trace("Add dogs");
 		listaPerros.add(new Perro(request.getParameter("nombre")));
@@ -82,9 +80,7 @@ public class DogeController extends HttpServlet {
 		request.getRequestDispatcher("/jsp/Doges.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.trace("KILL DOGZ");
 		
