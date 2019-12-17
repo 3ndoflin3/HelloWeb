@@ -16,7 +16,7 @@ Branch practicar
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-lg-6">
-		<form action="" method="post">
+		<form action="libro" method="post">
 		<fieldset>
 			<legend>Libros</legend>
 			

@@ -53,7 +53,7 @@
 			</c:if>
 			
 			
-				<a href="html/animaciones.html">Animacion</a>
+				<a href="jsp/visualizarlibros.jsp">Ver Libros</a>
 				<a href = "http://www.indicedejuegos.com/">Juegos de mi epoca</a>
 	            <a href = "jsp/formulario.jsp">Registrar producto</a>
 	            <a href="js/datatable.jsp">Datatable</a>

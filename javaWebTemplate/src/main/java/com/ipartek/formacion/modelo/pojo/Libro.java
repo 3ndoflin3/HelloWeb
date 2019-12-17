@@ -6,8 +6,8 @@ public class Libro {
 	private String nombre;
 	private String imagen;
 	private String descripcion;
-	private String precio;
-	private String descuento;
+	private float precio;
+	private int descuento;
 	
 	
 	
@@ -17,12 +17,12 @@ public class Libro {
 		this.nombre ="";
 		this.imagen ="";
 		this.descripcion ="";
-		this.precio ="";
-		this.descuento ="";
+		this.precio =0;
+		this.descuento =0;
 	}
 	
 	
-	public Libro(int id, String nombre, String imagen, String descripcion, String precio, String descuento) {
+	public Libro(int id, String nombre, String imagen, String descripcion, float precio, int descuento) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -64,19 +64,19 @@ public class Libro {
 		this.descripcion = descripcion;
 	}
 
-	public String getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 
-	public String getDescuento() {
+	public int getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(String descuento) {
+	public void setDescuento(int descuento) {
 		this.descuento = descuento;
 	}
 
