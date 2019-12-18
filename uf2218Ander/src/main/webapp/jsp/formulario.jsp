@@ -12,15 +12,15 @@
 					<legend>Crear Libro</legend>
 					
 					<label for="nombre" >Nombre: </label>
-					<input class="ml-3" type="text" name ="nombre" placeholder="nombre" />
+					<input class="ml-3" type="text" name ="nombre" placeholder="entre 2 y 150 caracteres" value="${nombre}" />
 					<br />
 					
 					<label class ="mr-2" for="precio" >Precio: </label>
-					<input class="ml-4" type="text" name ="precio" placeholder="precio ej.: 3.000,42 " />
+					<input class="ml-4" type="text" name ="precio" placeholder="precio ej.: 3.000,42 " value="${precio}"/>
 					<br />
 					
 					<label for="descuento" >Descuento: </label>
-					<input class="ml-1" type="text" name ="descuento" placeholder="descuento en porcentaje" />
+					<input class="ml-1" type="text" name ="descuento" placeholder="numero entre 0 y 100" value="${descuento}"/>
 					<br />
 					
 				</fieldset>

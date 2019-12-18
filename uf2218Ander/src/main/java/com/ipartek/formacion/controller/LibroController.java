@@ -46,13 +46,9 @@ public class LibroController extends HttpServlet {
 		float precio;
 		int descuento;
 		String precioFormateado = request.getParameter("precio");
+		
+		precioFormateado = precioFormateado.replaceAll(".", "");
 		precioFormateado = precioFormateado.replaceAll(",", ".");
-		
-		
-//		•	Id: numérico DONE 
-//		•	Nombre: Cadena de texto, mínimo 2 letras máximo 150 DONE
-//		•	Precio: número mayor que cero y con dos decimales escrito con comas
-//		•	Descuento: valor numérico entre 0 y 100 DONE 
 
 		if( isPositiveNumericFloat(precioFormateado) && 
 			isPositiveNumericArray(request.getParameter("descuento"))
@@ -79,14 +75,18 @@ public class LibroController extends HttpServlet {
 				//Ir a la otra pagina
 				request.getRequestDispatcher("jsp/visualizarlibros.jsp").forward(request, response);
 			}else {
-				request.setAttribute("mensaje", "Introduce valores correctos");
+				request.setAttribute("mensaje", "Introduce un nombre con una longitud entre 2 y 150 y un descuento con una longitud entre 0 y 100 ");
 				request.getRequestDispatcher("jsp/formulario.jsp").forward(request, response);
 			}
 				
 			
 	   		
 		}else {
-			request.setAttribute("mensaje", "Introduce valores correctos");
+			request.setAttribute("nombre", request.getParameter("nombre"));
+			request.setAttribute("precio", request.getParameter("precio"));
+			request.setAttribute("descuento", request.getParameter("descuento"));
+			
+			request.setAttribute("mensaje", "Introduce un precio con valor positivo y un descuento con una longitud entre 0 y 100");
 			request.getRequestDispatcher("jsp/formulario.jsp").forward(request, response);
 		}
 		
