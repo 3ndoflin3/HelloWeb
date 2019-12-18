@@ -3,9 +3,7 @@
 <%-- <jsp:include page="includes/Cabecera.jsp" /> --%>
 
 
-Pagina de bienvenida
-
-Branch practicar
+Pagina de bienvenida del examen
 
 
 
