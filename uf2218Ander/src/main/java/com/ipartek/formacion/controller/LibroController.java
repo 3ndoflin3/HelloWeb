@@ -47,8 +47,8 @@ public class LibroController extends HttpServlet {
 		int descuento;
 		String precioFormateado = request.getParameter("precio");
 		
-		precioFormateado = precioFormateado.replaceAll(".", "");
-		precioFormateado = precioFormateado.replaceAll(",", ".");
+		precioFormateado = precioFormateado.replace(".", "");
+		precioFormateado = precioFormateado.replace(",", ".");
 
 		if( isPositiveNumericFloat(precioFormateado) && 
 			isPositiveNumericArray(request.getParameter("descuento"))

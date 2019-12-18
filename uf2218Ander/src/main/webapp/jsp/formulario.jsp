@@ -1,4 +1,4 @@
-<%String titulo = "formulario"; %>
+<%String titulo = "Listar libros"; %>
 <%@include file ="../includes/Cabecera.jsp" %>
 <%-- <jsp:include page="includes/Cabecera.jsp" /> --%>
 

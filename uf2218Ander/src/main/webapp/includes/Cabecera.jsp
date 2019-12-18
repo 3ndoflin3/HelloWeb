@@ -25,7 +25,7 @@
 		<nav class = "col-lg-6 mt-4 ">
 			<!--  class="bg-secondary mb-3"-->
 	            <a href="index.jsp">Inicio</a>
-				<a href="libro">Ver Libros</a>
+				<a href="libro">Listar Libros</a>
 	            <a href = "jsp/formulario.jsp">Registrar libro</a>
 			
 		</nav>
