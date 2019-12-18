@@ -18,9 +18,8 @@ public class Libro {
 	}
 	
 	
-	public Libro(int id, String nombre, float precio, int descuento) {
+	public Libro( String nombre, float precio, int descuento) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descuento = descuento;

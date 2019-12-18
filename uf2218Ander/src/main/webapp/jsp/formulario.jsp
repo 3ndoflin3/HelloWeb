@@ -7,28 +7,25 @@
 	<div class="row justify-content-center">
 		<div class="col-lg-6">
 			<form action="libro" method="post">
+			 ${mensaje}
 				<fieldset>
-					<legend>Libros</legend>
-					
-					<label for="id" >ID: </label>
-					<input type="number" name ="id" placeholder="id" />
-					<br />
+					<legend>Crear Libro</legend>
 					
 					<label for="nombre" >Nombre: </label>
-					<input type="text" name ="nombre" placeholder="nombre" />
+					<input class="ml-3" type="text" name ="nombre" placeholder="nombre" />
 					<br />
 					
-					<label for="precio" >Precio: </label>
-					<input type="number" name ="precio" placeholder="precio en euros suprimo" />
+					<label class ="mr-2" for="precio" >Precio: </label>
+					<input class="ml-4" type="text" name ="precio" placeholder="precio ej.: 3.000,42 " />
 					<br />
 					
 					<label for="descuento" >Descuento: </label>
-					<input type="number" name ="descuento" placeholder="descuento en porcentaje" />
+					<input class="ml-1" type="text" name ="descuento" placeholder="descuento en porcentaje" />
 					<br />
 					
 				</fieldset>
 				
-				<input type="submit" value="Registrar" />
+				<input class="mt-2" type="submit" value="Registrar" />
 				
 			</form>
 		</div> <!-- END OF COL -->

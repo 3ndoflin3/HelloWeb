@@ -56,7 +56,7 @@ public class LibroDAO implements LDAO<Libro>{
 	public Libro create(Libro pojo) throws Exception {
 		Libro book = null;
 			if(pojo!=null) {
-				pojo.setId(++index);
+				pojo.setId(index++);
 				libros.add(pojo);
 			}else {
 				throw new Exception("Libro NULL sin datos");
