@@ -48,25 +48,35 @@ public class LibroController extends HttpServlet {
 		int descuento;
 		
 		
-		
+//		•	Id: numérico DONE 
+//		•	Nombre: Cadena de texto, mínimo 2 letras máximo 150 DONE
+//		•	Precio: número mayor que cero y con dos decimales escrito con comas
+//		•	Descuento: valor numérico entre 0 y 100 DONE 
+
 		if(isNumericArray(request.getParameter("id")) && 
 			isNumericArray(request.getParameter("precio")) && 
 			isNumericArray(request.getParameter("descuento"))
 			) {
-			
+			String precioFormateado = request.getParameter("precio");
+			precioFormateado.replace(",", ".");
+				
 			id = Integer.parseInt(request.getParameter("id"));
 			descuento = Integer.parseInt(request.getParameter("descuento"));
-			precio = Float.parseFloat(request.getParameter("precio"));
+			precio = Float.parseFloat(precioFormateado);
 			//Get the PARAMETERS and add them to the new instance
 			
-			try {
-				
-				libroDAO.create(new Libro(id, nombre, precio, descuento));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			if(nombre.length()>2 && nombre.length()<150 && 
+				descuento>0 && descuento<=100) {
 			
+				try {
+					libroDAO.create(new Libro(id, nombre, precio, descuento));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+				
 			//Send the ATTRIBUTE to visualize it 
 			request.setAttribute("listaLibros", libroDAO.getAll());
 			
@@ -74,7 +84,8 @@ public class LibroController extends HttpServlet {
 			request.getRequestDispatcher("jsp/visualizarlibros.jsp").forward(request, response);
 	   		
 		}else {
-			
+			request.setAttribute("mensaje", "Introduce valores correctos");
+			request.getRequestDispatcher("jsp/formulario.jsp").forward(request, response);
 		}
 		
 		
@@ -91,7 +102,7 @@ public class LibroController extends HttpServlet {
 	    if (data[0] == '-' && data.length > 1)
 	        index = 1;
 	    for (; index < data.length; index++) {
-	        if (data[index] < '0' || data[index] > '9') // Character.isDigit() can go here too.
+	        if (data[index] < '0' || data[index] > '9') // Se puede cambiar por Character.isDigit()
 	            return false;
 	    }
 	    return true;

@@ -23,9 +23,9 @@
 	<div class = "row justify-content-center">	
 		<nav class = "col-lg-6 mt-4">
 			
-				<a class="" href="jsp/visualizarlibros.jsp">Ver Libros</a>
+	            <a href="index.jsp">Inicio</a>
+				<a class="" href="/libro">Ver Libros</a>
 	            <a href = "jsp/formulario.jsp">Registrar libro</a>
-	            <a href="js/datatable.jsp">Datatable</a>
 			
 		</nav>
 	</div>
