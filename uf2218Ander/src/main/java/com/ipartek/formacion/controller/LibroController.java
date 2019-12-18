@@ -35,7 +35,7 @@ public class LibroController extends HttpServlet {
 		request.setAttribute("listaLibros", libroDAO.getAll());
 		
 		//forward to the jsp
-		request.getRequestDispatcher("jsp/visualizarlibros.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 	}
 	
@@ -73,7 +73,7 @@ public class LibroController extends HttpServlet {
 				request.setAttribute("listaLibros", libroDAO.getAll());
 				
 				//Ir a la otra pagina
-				request.getRequestDispatcher("jsp/visualizarlibros.jsp").forward(request, response);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}else {
 				request.setAttribute("mensaje", "Introduce un nombre con una longitud entre 2 y 150 y un descuento con una longitud entre 0 y 100 ");
 				request.getRequestDispatcher("jsp/formulario.jsp").forward(request, response);
