@@ -20,7 +20,6 @@ import com.ipartek.formacion.modelo.LibroDAO;
 public class LibroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = Logger.getLogger(LibroController.class);
-	//private List<Libro> listaLibros;
 	private LibroDAO libroDAO = LibroDAO.getInstance();
 	
 	
@@ -52,6 +51,8 @@ public class LibroController extends HttpServlet {
 		float precio;
 		int descuento;
 		String precioFormateado = request.getParameter("precio");
+		String enlace = request.getParameter("enlace");
+		String autor = request.getParameter("autor");
 		
 		precioFormateado = precioFormateado.replace(".", "");
 		precioFormateado = precioFormateado.replace(",", ".");
@@ -66,11 +67,11 @@ public class LibroController extends HttpServlet {
 			//Get the PARAMETERS and add them to the new instance
 			
 			if(nombre.length()>2 && nombre.length()<150 && 
-				descuento>=0 && descuento<=100) {
+				descuento>=0 && descuento<=100 && !"".equals(autor)) {
 				
 				//Esta con try y catch porque el metodo de la interfaz lanza una excepcion (aunque nunca va a dar error)
 				try {
-					libroDAO.create(new Libro(nombre, precio, descuento));
+					libroDAO.create(new Libro(nombre, precio, descuento, enlace, autor));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -81,6 +82,7 @@ public class LibroController extends HttpServlet {
 				//Ir a la otra pagina
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}else {
+				
 				request.setAttribute("mensaje", "Introduce un nombre con una longitud entre 2 y 150 y un descuento con una longitud entre 0 y 100 ");
 				request.getRequestDispatcher("jsp/formulario.jsp").forward(request, response);
 			}

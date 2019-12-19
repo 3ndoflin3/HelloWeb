@@ -1,26 +1,27 @@
 package com.ipartek.formacion.modelo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import com.ipartek.formacion.modelo.Libro;
 
 public class LibroDAO implements LDAO<Libro>{
 	
-	private static ArrayList<Libro> libros;
+	private static List<Libro> libros;
 	
-	private static int index = 1;
+	private static int index = libros.size();
 	
 	private static LibroDAO INSTANCE = null;
-	
 	//Constructor
 	private LibroDAO() {
+		String imagen = "https://image.flaticon.com/icons/png/512/260/260506.png";
 		libros = new ArrayList<>();
-		libros.add(new Libro("Lord of the rings", 24.53f, 20, "enlace imagen", "Autor"));
+		libros.add(new Libro("Lord of the rings", 24.53f, 20, imagen, "Autor"));
 		libros.get(0).setId(0);
-		libros.add(new Libro("The bible", 5.3f, 0, "enlace imagen", "Autor"));
+		libros.add(new Libro("The bible", 5.3f, 0, imagen, "Autor"));
 		libros.get(1).setId(1);
-		libros.add(new Libro("Necronomicon", 56.1f, 10, "enlace imagen", "Autor"));
+		libros.add(new Libro("Necronomicon", 56.1f, 10, imagen, "Autor"));
 		libros.get(2).setId(2);
 	}
 	
@@ -40,6 +41,8 @@ public class LibroDAO implements LDAO<Libro>{
 	public List<Libro> getAll() {
 		return libros;
 	}
+	
+	
 
 	//Metodo para obtener un libro por su ID
 	@Override
@@ -62,7 +65,7 @@ public class LibroDAO implements LDAO<Libro>{
 	public Libro create(Libro pojo) throws Exception {
 		Libro book = null;
 			if(pojo!=null) {
-				pojo.setId(index++);
+				pojo.setId(++index);
 				libros.add(pojo);
 			}else {
 				throw new Exception("Libro NULL sin datos");
@@ -71,4 +74,17 @@ public class LibroDAO implements LDAO<Libro>{
 		return book;
 	}
 
+	@Override
+	public void update(int id, Libro pojo) {
+		for(Libro libro : libros) {
+			if(id == libro.getId()) {
+				libros.remove(id);
+				break;
+			}
+		}
+		libros.add(id, pojo);
+		libros.get(id).setId(id);
+		libros.sort(Comparator.comparing(Libro::getId));
+	}
+	
 }

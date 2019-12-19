@@ -8,7 +8,7 @@ public class Libro {
 	private int descuento;
 	private String enlace;
 	private String autor;
-	
+	private String imagenPre ="https://image.flaticon.com/icons/png/512/260/260506.png";
 	
 	public Libro() {
 		super();
@@ -16,6 +16,8 @@ public class Libro {
 		this.nombre ="";
 		this.precio =0;
 		this.descuento =0;
+		this.enlace = imagenPre;
+		this.autor = "";
 	}
 	
 	
@@ -24,8 +26,8 @@ public class Libro {
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descuento = descuento;
-		this.enlace = enlace;
-		this.autor = autor;
+		this.enlace = (!"".equals(enlace))?enlace : imagenPre;
+		this.autor = (!"".equals(autor))?autor: "Anonimo";
 	}
 
 	

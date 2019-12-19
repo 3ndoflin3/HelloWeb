@@ -15,23 +15,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
    	<!-- Font awesome cdn -->
    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" />
-   	<link rel="stylesheet" href="/css/Viper.css" media="all" />
-   	
-	
+   	<link rel="stylesheet" href="/css/footer.css" media="all" />
 	
     <title id = "Title"><%=titulo %></title>
 </head>
 
 <body>
-	
-	<!-- <div class = "row justify-content-center">	
-		<nav class = "navcol-lg-6 mt-4 ">
-			 class="bg-secondary mb-3"
-	            <a href="libro">Inicio</a>
-	            <a href = "jsp/formulario.jsp">Registrar libro</a>
-			
-		</nav>
-	</div> -->
 	
 	
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,16 +29,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
+  <div class="navbar-collapse collapse show" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/seguridad/index.jsp">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout">Logout</a>
       </li>
-      <li class="nav-item "><a href = "/html/productos.html" class="nav-link ">Nuestros productos</a></li>
-      <li><a href="jsp/formulario.jsp" class="nav-link ">Añadir libro</a></li>
+      <li><a href="seguridad/jsp/formulario.jsp" class="nav-link ">Añadir libro</a></li>
+      <li class="nav-item "><a href = "seguridad/jsp/formularioEditar.jsp" class="nav-link ">Editar libros</a></li>
       
     </ul>
    

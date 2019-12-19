@@ -18,19 +18,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col mx-4">
-				<!-- <div class="row"> -->
+			<br />
+				<p>${mensaje}</p>
 				<p>Tenemos estos libros: </p>
-				<ul class ="list-group m-4 row">
+				<br />
+				<ul class ="list-inline m-4">
 					<c:forEach items="${listaLibros}" var="libro">
 					
-		     		  <li class ="list-group-item col">ID: ${libro.id} Nombre: ${libro.nombre} Precio:
-			    		  <fmt:formatNumber pattern="#,##0.00" value="${libro.precio} "/>&#8364; Descuento: ${libro.descuento}
-			    		  <a href=""><i class="fa fa-trash r-1" aria-hidden="true"> </i></a> <a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-			    		  <!-- POSICIONAR LOS ICONOS COMO EL BOTON DE SUBIR (Y YA QUE ESTAMOS HACEMOS EL BOTON PARA SUBIR) -->
+		     		  <li class ="list-inline-item w-25 text-center">
+		     		  <p><img src="${libro.enlace}" alt="imagen" class="h-50 w-50 "/></p>
+		     		  <p class="w-100 text-center">ID: ${libro.id} Nombre: ${libro.nombre}</p>
+		     		   Precio: <fmt:formatNumber pattern="#,##0.00" value="${libro.precio} "/>&#8364; Descuento: ${libro.descuento}
+		    		  <a href="seguridad/librogestion?id=${libro.id}"><i class="fa fa-trash r-1" aria-hidden="true"> </i></a> 
+		    		  <a href="seguridad/jsp/formularioEditar.jsp"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
 		    		  </li> 
 					</c:forEach>
 				</ul>
-				<!-- </div> --><!-- END OF 2ND ROW -->
 			</div> <!-- END OF 1ST COL -->
 		</div> <!-- END OF 1ST ROW -->
 	</div> <!-- END OF CONTAINER -->
