@@ -18,9 +18,9 @@ public class LibroDAO implements LDAO<Libro>{
 		libros = new ArrayList<>();
 		libros.add(new Libro("Lord of the rings", 24.53f, 20, "enlace imagen", "Autor"));
 		libros.get(0).setId(0);
-		libros.add(new Libro("The bible", 5.3f, 0));
+		libros.add(new Libro("The bible", 5.3f, 0, "enlace imagen", "Autor"));
 		libros.get(1).setId(1);
-		libros.add(new Libro("Necronomicon", 56.1f, 10));
+		libros.add(new Libro("Necronomicon", 56.1f, 10, "enlace imagen", "Autor"));
 		libros.get(2).setId(2);
 	}
 	
