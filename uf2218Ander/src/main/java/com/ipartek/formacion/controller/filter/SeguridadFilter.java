@@ -50,9 +50,6 @@ public class SeguridadFilter implements Filter {
 		LOG.trace("Destroy");
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -66,13 +63,6 @@ public class SeguridadFilter implements Filter {
 		LOG.debug("HTTP RemoteHost " + req.getRemoteHost());
 		
 		
-		String ipCliente = req.getRemoteHost();
-		
-		
-		HashSet<String> ips = (HashSet<String>) applicationScope.getAttribute("ips");
-		ips.add(ipCliente);
-		
-		
 		
 		HttpSession session = req.getSession();
 		
@@ -82,6 +72,9 @@ public class SeguridadFilter implements Filter {
 			
     		numeroIntentosFallidos += 1; 
     					
+    		request.setAttribute("mensaje", "Intruso, logeate");
+    		request.getRequestDispatcher("/libro").forward(request, response);
+    		
 		}else {
 			
 			
@@ -92,19 +85,16 @@ public class SeguridadFilter implements Filter {
 		
 		
 		applicationScope.setAttribute("numeroIntentosFallidos", numeroIntentosFallidos);
-		applicationScope.setAttribute("ips", new HashSet<String>());
+		
 		
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		LOG.trace("init");
 		numeroIntentosFallidos = 0;
 		applicationScope = fConfig.getServletContext();
 		applicationScope.setAttribute("numeroIntentosFallidos", numeroIntentosFallidos);
-		applicationScope.setAttribute("ips", new HashSet<String>());
+
 
 	}
 

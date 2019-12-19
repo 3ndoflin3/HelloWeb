@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+    <!--  RESPONSIVE TABLE  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"/>
+    
+    <link rel="stylesheet" href="/css/tablaProductos.css">
+    <title>Tienda | Productos</title>
+    
+</head>
+<body>
+    <!-- JQuery -->    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>	
+    
+    <!-- Datatable -->
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>	
+	<script>
+            //Nuestro script para seleccionar la tabla y ejecutar el plugin
+            $(document).ready(function() { //Esperar a que este todo el DOM (document object model, la pag web) este cargado (Es un onLoad())
+            $('.tabla').DataTable({ //  $('#example') == document.getElementById('example') .datatable ejecuta el plugin
+                    responsive: true,	// Se puede llamar a un elemento por su ID o clase
+                    language:{
+    
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        },
+                        "buttons": {
+                            "copy": "Copiar",
+                            "colvis": "Visibilidad"
+                        }
+                        
+                        
+                    }//End Of Language	
+            
+            
+            
+            });
+                                        
+            } );
+        
+            
+        </script>
+
+        
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="/index.html" class="navbar-brand">Tienda | Inicio</a>
+            </div> <!-- END OF NAVBAR HEADER -->
+
+            <ul class="nav navbar-nav">
+                <li><a href = "html/productos.html" class="btn ">Nuestros productos</a></li>
+                <li><a href="html/nuevoProducto.html" class="btn ">Crear Producto</a></li>
+                <li><a href ="/html/login.html" class="btn login"><span class="glyphicon glyphicon-log-in" style="padding-right: 10px;"></span> Login</a></li>
+
+            </ul>
+
+        </div> <!-- END OF CONTAINER FLUID -->
+
+    </nav>
+
+
+        <main>
+                <table  class="tabla responsive display" >
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Descripcion</th>
+                                <th>Fecha de salida</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- <td class="sorting_1" tabindex="0" >
+                                Aprovecha para comprarla mientras esta rebajada a 10€</td> -->
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>20.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/09/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/05</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2001/04/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/03/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>50.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>10.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Botella Absenta azul </td>
+                                <td>150.00€</td>
+                                <td>Botella con 70cl de Absenta azul</td>
+                                <td>2011/04/25</td>
+                            </tr>
+        
+        
+        
+        
+                        </tbody>
+                        
+                    </table>
+        </main>
+            
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+
+    <!-- Footer Elements -->
+    <div class="container">
+        <!-- Grid row-->
+        <div class="row">
+    
+            <!-- Grid column -->
+            <div class="col-md-12 py-5">
+            <div class="d-inline-flex p-2 bd-highlight">
+    
+                <!-- Facebook -->
+                <a class="fb-ic">
+                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!-- Twitter -->
+                <a class="tw-ic">
+                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <a href="#" class="info">Politica de privacidad</a>
+
+                <a href="#" class="info">Contacto</a>
+
+                <a href="#" class="info">Localizacion</a>
+            </div>
+            </div>
+            <!-- Grid column -->
+    
+        </div>
+        <!-- Grid row-->
+    
+        </div>
+        <!-- Footer Elements -->
+    
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    
+    </footer>
+    <!-- Footer -->
+
+</body>
+</html>

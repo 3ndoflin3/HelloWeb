@@ -1,37 +1,38 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LibroGestionController
+ * Servlet implementation class LogoutController
  */
-@WebServlet("/seguridad/librogestion")
-public class LibroGestionController extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LibroGestionController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/*METODO PARA EDITAR*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		doPost(request, response);
 	}
 
-	/*METODO PARA BORRAR*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		session.setAttribute("usuarioLogeado", null);
+		session.invalidate();
+		session = null;
+		String mensaje = "Gracias por visitarnos";
+		request.setAttribute("mensaje", mensaje);
+		request.getRequestDispatcher("/").forward(request, response);
+		
 	}
 
 }

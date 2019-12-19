@@ -1,14 +1,12 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -31,11 +29,19 @@ public class LibroController extends HttpServlet {
     //*****************************METODO*PARA*VISUALIZAR*************************************************************
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.trace("Visualizar libros");
-		
+		HttpSession session = request.getSession();
 		request.setAttribute("listaLibros", libroDAO.getAll());
 		
-		//forward to the jsp
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		if(session.getAttribute("usuarioLogeado")!=null) {
+			//forward to the jsp
+			request.getRequestDispatcher("seguridad/index.jsp").forward(request, response);
+			
+		}else {
+			//forward to the jsp
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			
+		}
+		
 		
 	}
 	

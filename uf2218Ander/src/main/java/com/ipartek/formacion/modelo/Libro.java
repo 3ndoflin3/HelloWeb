@@ -6,7 +6,8 @@ public class Libro {
 	private String nombre;
 	private float precio;
 	private int descuento;
-	
+	private String enlace;
+	private String autor;
 	
 	
 	public Libro() {
@@ -18,13 +19,16 @@ public class Libro {
 	}
 	
 	
-	public Libro( String nombre, float precio, int descuento) {
+	public Libro( String nombre, float precio, int descuento, String enlace, String autor) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.descuento = descuento;
+		this.enlace = enlace;
+		this.autor = autor;
 	}
 
+	
 	public int getId() {
 		return id;
 	}
@@ -57,19 +61,29 @@ public class Libro {
 		this.descuento = descuento;
 	}
 
+	public String getEnlace() {
+		return enlace;
+	}
+
+
+	public void setEnlace(String enlace) {
+		this.enlace = enlace;
+	}
+
+
+	public String getAutor() {
+		return autor;
+	}
+
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Libro [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", descuento=" + descuento + "]";
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

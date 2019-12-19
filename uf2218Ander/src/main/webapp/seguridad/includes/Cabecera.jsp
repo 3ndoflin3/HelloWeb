@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -42,12 +42,14 @@
 
   <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
     <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item">
-        <a class="nav-link" href="jsp/login.jsp">Login</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="/seguridad/index.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout">Logout</a>
+      </li>
+      <li class="nav-item "><a href = "/html/productos.html" class="nav-link ">Nuestros productos</a></li>
       <li><a href="jsp/formulario.jsp" class="nav-link ">Añadir libro</a></li>
-      
       
     </ul>
    
