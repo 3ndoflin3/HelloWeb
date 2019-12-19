@@ -13,7 +13,10 @@
     <base href="/kiryl/">
    	 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+   	<!-- Font awesome cdn -->
+   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" />
    	<link rel="stylesheet" href="/css/Viper.css" media="all" />
+   	
 	
 	
     <title id = "Title"><%=titulo %></title>
