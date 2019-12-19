@@ -10,7 +10,7 @@ public class LibroDAO implements LDAO<Libro>{
 	
 	private static List<Libro> libros;
 	
-	private static int index = libros.size();
+	private static int index = (Boolean) (null)?1:libros.size();
 	
 	private static LibroDAO INSTANCE = null;
 	//Constructor
