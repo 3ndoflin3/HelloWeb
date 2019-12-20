@@ -48,6 +48,7 @@
         <a class="nav-link" href="jsp/login.jsp">Login</a>
       </li>
       <li><a href="jsp/formulario.jsp" class="nav-link ">Añadir libro</a></li>
+      <li><a href="LibroBD" class="nav-link ">Listar libros BBDD</a></li>
       
       
     </ul>
