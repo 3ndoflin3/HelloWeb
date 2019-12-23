@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.controller.seguridad;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import com.ipartek.formacion.supermercado.controller.Alerta;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
@@ -32,6 +37,12 @@ public class ProductosController extends HttpServlet {
 	public static final String ACCION_ELIMINAR = "eliminar";
 	
 	
+	//Crear Factoria y Validador
+	 ValidatorFactory factory ;
+	 Validator validator;
+
+
+
 	
 	//parametros
 	String pAccion;	
@@ -47,12 +58,16 @@ public class ProductosController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {		
 		super.init(config);
 		dao = ProductoDAO.getInstance();
+		factory = Validation.buildDefaultValidatorFactory();
+		validator = factory.getValidator();
 	}
       
 	@Override
 	public void destroy() {	
 		super.destroy();
 		dao = null;
+		factory = null;
+		validator = null;
 	}
     
 
@@ -145,36 +160,43 @@ public class ProductosController extends HttpServlet {
 		Producto pGuardar = new Producto();		
 		pGuardar.setId(id);
 		pGuardar.setNombre(pNombre);
+		pGuardar.setPrecio(Float.parseFloat(pPrecio));
+		pGuardar.setImagen(pImagen);
+		pGuardar.setDescripcion(pDescripcion);
+		pGuardar.setDescuento(Integer.parseInt(pDescuento));
 		
-		
-		// nombre mas de 2 y menos de 50
-		if ( pNombre != null && pNombre.trim().length() >= 2 && pNombre.trim().length() <= 50 ) {
+		Set<ConstraintViolation<Producto>> validaciones = validator.validate(pGuardar);
+		if(validaciones.size() >0) {
+
+			StringBuilder mensaje = new StringBuilder();
+			for (ConstraintViolation<Producto> cv : validaciones) {
 				
-				
-				
-				try {
-				
-					if ( id > 0 ) {  // modificar
-						
-						dao.update(id, pGuardar);		
-						
-					}else {            // crear
-						dao.create(pGuardar);
-					}
-					
-				}catch (Exception e) {  // validacion a nivel de base datos
-					
-					request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre ya existe, selecciona otro"));
-				}	
+				mensaje.append("<p>");
+				mensaje.append(cv.getPropertyPath()).append(":");
+				mensaje.append(cv.getMessage());				
+				mensaje.append("</p>");
+			}
+			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, mensaje.toString()));
 					
 			
 		}else {  // validacion de campos del formuarlio incorrectos
-			
-			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre debe ser entre 2 y 50 caratcteres"));
+			try {
+				
+				if ( id > 0 ) {  // modificar
+					
+					dao.update(id, pGuardar);		
+					
+				}else {            // crear
+					dao.create(pGuardar);
+				}
+				
+			}catch (Exception e) {  // validacion a nivel de base datos
+				request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre ya existe, selecciona otro"));
+			}	
 			
 		}
 		
-		request.setAttribute("producto", pGuardar);
+		request.setAttribute("productos", pGuardar);
 		vistaSeleccionda = VIEW_FORM;
 		
 		

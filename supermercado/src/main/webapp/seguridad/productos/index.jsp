@@ -4,12 +4,17 @@
     	
 	
 	<a href="seguridad/productos?accion=formulario">Nuevo Producto</a>
+	${productos}
 	
 	<table  class="tabla display" style="width:100%">
         <thead>
             <tr>
-                <th>id</th>                
-                <th>nombre</th>
+                <th>ID</th>                
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>imagen</th>                
+                <th>descripcion</th>                
+                <th>descuento</th>                
                 <th>Editar</th>                
             </tr>
         </thead>
@@ -18,6 +23,10 @@
             	<tr>
                 	<td>${p.id}</td>
                 	<td>${p.nombre }</td>
+                	<td>${p.precio }</td>
+                	<td>${p.imagen }</td>
+                	<td>${p.descripcion}</td>
+                	<td>${p.descuento }</td>
                 	<td><a href="seguridad/productos?accion=formulario&id=${p.id}">Editar</a></td>
             	</tr>
             </c:forEach>	

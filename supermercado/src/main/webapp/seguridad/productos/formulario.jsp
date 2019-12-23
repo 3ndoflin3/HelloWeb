@@ -13,6 +13,22 @@
 		<input type="text" name="nombre" value="${producto.nombre}">
 		
 		<br>
+		<label>Precio:</label>
+		<input type="text" name="precio" value="${producto.precio}">
+		
+		<br>
+		<label>Imagen:</label>
+		<input type="text" name="imagen" value="${producto.imagen}">
+		
+		<br>
+		<label>Descripcion:</label>
+		<input type="text" name="descripcion" value="${producto.descripcion}">
+		
+		<br>
+		<label>Descuento:</label>
+		<input type="text" name="descuento" value="${producto.descuento}">
+		
+		<br>
 		
 		<input type="hidden" name="accion" value="guardar">
 		<input type="submit" value="${(producto.id>0)?"Modificar":"Crear" }">
@@ -34,7 +50,7 @@
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>

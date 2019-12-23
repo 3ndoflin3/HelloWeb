@@ -17,9 +17,9 @@ public class ProductoDAO implements IDAO<Producto> {
 	
 	private static ProductoDAO INSTANCE;
 		
-	private static final String SQL_GET_ALL = "SELECT id, nombre FROM producto ORDER BY id DESC LIMIT 500;";
-	private static final String SQL_GET_BY_ID ="SELECT id, nombre FROM producto WHERE id = ? ;"; 
-	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre) VALUES ( ? );";
+	private static final String SQL_GET_ALL = "SELECT id, nombre, precio FROM producto ORDER BY id DESC LIMIT 500;";
+	private static final String SQL_GET_BY_ID ="SELECT id, nombre, precio FROM producto WHERE id = ? ;"; 
+	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre, precio, imagen, descripcion, descuento ) VALUES ( ?, ?, ?, ?, ? );";
 	private static final String SQL_GET_UPDATE ="UPDATE producto SET nombre = ? WHERE id = ? ;";
 	private static final String SQL_DELETE ="DELETE FROM producto WHERE id = ? ;";
 	
@@ -54,6 +54,10 @@ public class ProductoDAO implements IDAO<Producto> {
 				Producto p = new Producto();
 				p.setId( rs.getInt("id"));
 				p.setNombre(rs.getString("nombre"));
+				p.setPrecio(rs.getFloat("precio"));
+				//p.setImagen(rs.getString("imagen"));
+				p.setDescripcion(rs.getString("descripcion"));
+				p.setDescuento(rs.getInt("descuento"));
 				lista.add(p);
 
 			}
@@ -146,7 +150,11 @@ public class ProductoDAO implements IDAO<Producto> {
 				PreparedStatement pst = con.prepareStatement( SQL_GET_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
 			pst.setString(1, pojo.getNombre());			
-
+			pst.setFloat(2, pojo.getPrecio());
+			pst.setString(3, pojo.getImagen());
+			pst.setString(4, pojo.getDescripcion());
+			pst.setInt(5, pojo.getDescuento());
+			
 			int affectedRows = pst.executeUpdate();
 			if (affectedRows == 1) {
 				// conseguimos el ID que acabamos de crear
