@@ -1,15 +1,18 @@
 package com.ipartek.formacion.supermercado.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 
@@ -28,7 +31,17 @@ public class InicioController extends HttpServlet {
 		super.init(config);
 		dao = ProductoDAO.getInstance();
 	}
-	
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		
+		  Connection con = ConnectionManager.getConnection();
+	         if(null == con) {
+	        	 response.sendRedirect("/error/error.jsp");
+	         }else {
+	        	 super.service(request, response);
+	         }	
+		
+	}
 	
 	@Override
 	public void destroy() {	
