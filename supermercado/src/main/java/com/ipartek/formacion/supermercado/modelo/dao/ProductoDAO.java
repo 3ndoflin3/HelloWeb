@@ -17,8 +17,8 @@ public class ProductoDAO implements IDAO<Producto> {
 	
 	private static ProductoDAO INSTANCE;
 		
-	private static final String SQL_GET_ALL = "SELECT id, nombre, precio FROM producto ORDER BY id DESC LIMIT 500;";
-	private static final String SQL_GET_BY_ID ="SELECT id, nombre, precio FROM producto WHERE id = ? ;"; 
+	private static final String SQL_GET_ALL = "SELECT id,  nombre, precio, imagen, descripcion, descuento  FROM producto ORDER BY id DESC LIMIT 500;";
+	private static final String SQL_GET_BY_ID ="SELECT  id, nombre, precio, imagen, descripcion, descuento  FROM producto WHERE id = ? ;"; 
 	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre, precio, imagen, descripcion, descuento ) VALUES ( ?, ?, ?, ?, ? );";
 	private static final String SQL_GET_UPDATE ="UPDATE producto SET nombre = ? WHERE id = ? ;";
 	private static final String SQL_DELETE ="DELETE FROM producto WHERE id = ? ;";
@@ -124,8 +124,8 @@ public class ProductoDAO implements IDAO<Producto> {
 	}
 
 	@Override
-	public Producto update(int id, Producto pojo) throws Exception {
-		
+	public boolean update(int id, Producto pojo) throws Exception {
+		boolean resultado = false;
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_GET_UPDATE)) {
 
@@ -140,7 +140,7 @@ public class ProductoDAO implements IDAO<Producto> {
 			}
 
 		}
-		return pojo;
+		return resultado;
 	}
 
 	@Override

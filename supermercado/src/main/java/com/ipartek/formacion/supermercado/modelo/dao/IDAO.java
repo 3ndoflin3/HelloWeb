@@ -35,7 +35,8 @@ public interface IDAO<P> {
 	 * @return pojo modificado
 	 * @throws Exception si no puede modificar o no lo encuentra
 	 */
-	P update(int id, P pojo)  throws Exception;
+	boolean update(int id, P pojo)  throws Exception;
+
 	
 	/**
 	 * crea un nuevo pojo

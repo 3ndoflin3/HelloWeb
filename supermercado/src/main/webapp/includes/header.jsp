@@ -29,24 +29,70 @@
 
   </head>
   <body id="top">
-    <nav class="site-header sticky-top py-1">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="index.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-            </a>
-            
-            <c:if test="${empty usuarioLogeado }" >
+   
+  <div class="bs-example">
+    <ul class="nav nav-pills mb-5">
+        <li class="nav-item">
+            <a href="#" class="nav-link active">Home</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Productos</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="seguridad/productos?accion=listar">Todos</a>
+            	<a class="dropdown-item" href="seguridad/productos?accion=formulario">Nuevo</a>
+            	
+                <div class="dropdown-divider"></div>
+                <a href="#"class="dropdown-item">Trash</a>
+            </div>
+        </li>
+         <c:if test="${empty usuarioLogeado }" >
+            	<li class="nav-item">
             	<a class="py-2 d-none d-md-inline-block" href="login.jsp">Login</a>
-            </c:if>
-            
-            <c:if test="${not empty usuarioLogeado }" >
-            	<a class="py-2 d-none d-md-inline-block" href="seguridad/productos?accion=listar">Tabla</a>
+            	</li>
+        </c:if>
+        
+        <c:if test="${not empty usuarioLogeado }" >
+         
+        <!--   <a class="py-2 d-none d-md-inline-block" href="seguridad/productos?accion=listar">Tabla</a>
             	<a class="py-2 d-none d-md-inline-block" href="seguridad/productos?accion=formulario">Formulario</a>
-            	<a class="py-2 d-none d-md-inline-block" href="logout">Cerrar Sessión</a>
-            </c:if>	            
-           
-        </div>
-    </nav>
+            	
+		  -->
+		  
+		  <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Usuarios</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="seguridad/usuarios?accion=listar">Todos</a>
+            	<a class="dropdown-item" href="seguridad/usuarios?accion=formulario">Nuevo</a>
+            	
+                <div class="dropdown-divider"></div>
+                <a href="#"class="dropdown-item">Trash</a>
+            </div>
+        </li>
+		  
+		  
+		  
+		  <li class="nav-item dropdown ml-auto">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="seguridad/productos?accion=formulario">Formulario</a>
+                <a href="#" class="dropdown-item">Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout">Cerrar Sessión</a>
+            </div>
+        </li>
+
+               
+
+
+         </c:if>	
+    </ul>
+   
+</div>
+       
+               
 
     <main class="container">
     

@@ -1,4 +1,4 @@
-package com.ipartek.formacion.model.dao;
+package com.ipartek.formacion.supermercado.modelo.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,18 +7,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.ipartek.formacion.model.ConnectionManager;
-import com.ipartek.formacion.model.pojo.Rol;
-import com.ipartek.formacion.model.pojo.Usuario;
+import org.jboss.logging.Logger;
 
-public class UsuarioDAO {
+import com.ipartek.formacion.supermercado.model.ConnectionManager;
+import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
+public class UsuarioDAO implements IUsuarioDAO{
+
+	private final static Logger LOG = Logger.getLogger(UsuarioDAO.class);
 	private static UsuarioDAO INSTANCE = null;
 
 	private static final String SQL_GET_ALL = "SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol', contrasenya, fecha_creacion, fecha_eliminacion FROM usuario as u, rol as r WHERE u.id_rol = r.id ORDER BY id DESC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol',contrasenya, fecha_creacion, fecha_eliminacion FROM usuario as u, rol as r WHERE u.id_rol = r.id AND u.id = ?;";
 	private static final String SQL_GET_ALL_BY_NOMBRE = "SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol',contrasenya, fecha_creacion, fecha_eliminacion FROM usuario as u, rol as r WHERE u.id_rol = r.id AND u.nombre LIKE ? ORDER BY u.nombre ASC LIMIT 500;";
-	private static final String SQL_EXISTE = " SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol', contrasenya, fecha_creacion, fecha_eliminacion " + " FROM usuario as u, rol as r " + " WHERE u.id_rol = r.id AND u.nombre = ? AND contrasenya = ? ;";
+	private static final String SQL_EXISTE = " SELECT id, nombre, contrasenia from usuario where nombre = ? and contrasenia = ?;";
 	private static final String SQL_INSERT = "INSERT INTO usuario ( nombre, contrasenya) VALUES ( ? , ?);";
 	private static final String SQL_UPDATE = "UPDATE usuario SET nombre= ?, contrasenya= ? WHERE id = ?;";
 	// private static final String SQL_DELETE = "DELETE FROM usuario WHERE id = ?;";
@@ -46,18 +48,22 @@ public class UsuarioDAO {
 	 * @param contrasenya
 	 * @return Usuario con datos si existe, null en caso de no existir
 	 */
-	public Usuario existe(String nombre, String contrasenya) {
+	@Override
+	public Usuario existe(String nombre, String contrasenia) {
 
 		Usuario usuario = null;
 
-		
+		LOG.debugv("nombre =" + nombre + " contrasenia= " + contrasenia);
 
 		try (Connection con = ConnectionManager.getConnection(); PreparedStatement pst = con.prepareStatement(SQL_EXISTE);) {
 
 			// sustituir ? por parametros
 			pst.setString(1, nombre);
-			pst.setString(2, contrasenya);
+			pst.setString(2, contrasenia);
 
+			LOG.debug(pst);
+			
+			
 			// ejecutar sentencia SQL y obtener Resultado
 			try (ResultSet rs = pst.executeQuery()) {
 
@@ -67,12 +73,13 @@ public class UsuarioDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
 		return usuario;
 	}
 
+	@Override
 	public ArrayList<Usuario> getAll() {
 
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
@@ -98,28 +105,8 @@ public class UsuarioDAO {
 		return lista;
 	}
 
-	public ArrayList<Usuario> getAllByNombre(String nombre) {
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
-		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL_BY_NOMBRE);) {
-
-			pst.setString(1, "%" + nombre + "%");
-
-			try (ResultSet rs = pst.executeQuery()) {
-
-				while (rs.next()) {
-					lista.add(mapper(rs));
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return lista;
-	}
-
+	@Override
 	public Usuario getById(int id) {
 		Usuario resul = new Usuario();
 
@@ -138,34 +125,15 @@ public class UsuarioDAO {
 		}
 		return resul;
 	}
-
-	public boolean delete(int id) {
-		boolean resultado = false;
-
-		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(SQL_DELETE_LOGICO);) {
-
-			pst.setInt(1, id);
-
-			int affetedRows = pst.executeUpdate();
-			if (affetedRows == 1) {
-				resultado = true;
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return resultado;
-	}
-
-	public boolean modificar(Usuario pojo) throws Exception {
+	
+	
+	public boolean update(int id, Usuario pojo) throws Exception {
 		boolean resultado = false;
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_UPDATE)) {
 
 			pst.setString(1, pojo.getNombre());
-			pst.setString(2, pojo.getContrasenya());
+			pst.setString(2, pojo.getContrasenia());
 			pst.setInt(3, pojo.getId());
 
 			int affectedRows = pst.executeUpdate();
@@ -176,14 +144,15 @@ public class UsuarioDAO {
 		}
 		return resultado;
 	}
-
-	public Usuario crear(Usuario pojo) throws Exception {
+	
+	@Override
+	public Usuario create(Usuario pojo) throws Exception {
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
 			pst.setString(1, pojo.getNombre());
-			pst.setString(2, pojo.getContrasenya());
+			pst.setString(2, pojo.getContrasenia());
 
 			int affectedRows = pst.executeUpdate();
 			if (affectedRows == 1) {
@@ -205,16 +174,15 @@ public class UsuarioDAO {
 		Usuario u = new Usuario();
 		u.setId(rs.getInt("id"));
 		u.setNombre(rs.getString("nombre"));
-		u.setContrasenya(rs.getString("contrasenya"));
-		u.setFechaCreacion(rs.getTimestamp("fecha_creacion"));
-		u.setFechaEliminacion(rs.getTimestamp("fecha_eliminacion"));
-		
-		Rol rol = new Rol();
-		rol.setId( rs.getInt("id_rol"));
-		rol.setNombre( rs.getString("nombre_rol"));
-		u.setRol(rol);
-		
+		u.setContrasenia(String.valueOf(rs.getInt("contrasenia")));
 		return u;
 	}
+
+	@Override
+	public Usuario delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
