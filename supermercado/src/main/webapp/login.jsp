@@ -6,7 +6,7 @@
 	<div class="row justify-content-center">
 		<div class="col-4 mt-5">
 		
-				<form action="login" method="post">
+				<form action="login?accion=login" method="post">
 				
 					 <div class="form-group">
 					    <label for="nombre">Nombre:</label>
@@ -14,8 +14,8 @@
 					 </div>					
 					 
 					 <div class="form-group">
-					    <label for="contrasenya">Contraseña:</label>
-					    <input type="password" class="form-control" name="contrasenya" id="contrasenya" required>					    
+					    <label for="contrasenia">Contraseña:</label>
+					    <input type="password" class="form-control" name="contrasenia" id="contrasenya" required>					    
 					 </div>
 					
 					 <button type="submit" class="btn btn-block btn-primary">Entrar</button>

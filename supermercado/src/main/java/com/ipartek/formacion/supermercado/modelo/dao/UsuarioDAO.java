@@ -17,13 +17,13 @@ public class UsuarioDAO implements IUsuarioDAO{
 	private final static Logger LOG = Logger.getLogger(UsuarioDAO.class);
 	private static UsuarioDAO INSTANCE = null;
 
-	private static final String SQL_GET_ALL = "SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol', contrasenya, fecha_creacion, fecha_eliminacion FROM usuario as u, rol as r WHERE u.id_rol = r.id ORDER BY id DESC LIMIT 500;";
-	private static final String SQL_GET_BY_ID = "SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol',contrasenya, fecha_creacion, fecha_eliminacion FROM usuario as u, rol as r WHERE u.id_rol = r.id AND u.id = ?;";
-	private static final String SQL_GET_ALL_BY_NOMBRE = "SELECT u.id, u.nombre, r.id as 'id_rol', r.nombre as 'nombre_rol',contrasenya, fecha_creacion, fecha_eliminacion FROM usuario as u, rol as r WHERE u.id_rol = r.id AND u.nombre LIKE ? ORDER BY u.nombre ASC LIMIT 500;";
+	private static final String SQL_GET_ALL = "SELECT id, nombre, contrasenia  FROM usuario ORDER BY id DESC LIMIT 500;";
+	private static final String SQL_GET_BY_ID = "SELECT id, nombre, contrasenia FROM usuario WHERE u.id = ?;";
+	private static final String SQL_GET_ALL_BY_NOMBRE = "SELECT u.id, u.nombre, contrasenia FROM usuario  WHERE nombre LIKE ? ORDER BY u.nombre ASC LIMIT 500;";
 	private static final String SQL_EXISTE = " SELECT id, nombre, contrasenia from usuario where nombre = ? and contrasenia = ?;";
-	private static final String SQL_INSERT = "INSERT INTO usuario ( nombre, contrasenya) VALUES ( ? , ?);";
-	private static final String SQL_UPDATE = "UPDATE usuario SET nombre= ?, contrasenya= ? WHERE id = ?;";
-	// private static final String SQL_DELETE = "DELETE FROM usuario WHERE id = ?;";
+	private static final String SQL_INSERT = "INSERT INTO usuario ( nombre, contrasenia) VALUES ( ? , ?);";
+	private static final String SQL_UPDATE = "UPDATE usuario SET nombre= ?, contrasenia= ? WHERE id = ?;";
+	private static final String SQL_DELETE = "DELETE FROM usuario WHERE id = ?;";
 	private static final String SQL_DELETE_LOGICO = "UPDATE usuario SET fecha_eliminacion = CURRENT_TIMESTAMP() WHERE id = ?;";
 
 	private UsuarioDAO() {
@@ -180,8 +180,19 @@ public class UsuarioDAO implements IUsuarioDAO{
 
 	@Override
 	public Usuario delete(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario resul = new Usuario();
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_DELETE)) {
+
+			pst.setInt(1, id);
+
+			pst.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resul;
 	}
 
 

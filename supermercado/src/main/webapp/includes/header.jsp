@@ -16,7 +16,7 @@
     <meta name="author" content="Ander Uraga">
     <title>Supermercado</title>
     
-   <base href="${pageContext.request.contextPath}/" >
+   <base href="/supermecado/" >
 
    <!-- Bootstrap core CSS -->
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -64,8 +64,8 @@
 		  <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Usuarios</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="seguridad/usuarios?accion=listar">Todos</a>
-            	<a class="dropdown-item" href="seguridad/usuarios?accion=formulario">Nuevo</a>
+                <a class="dropdown-item" href="login?accion=listar">Todos</a>
+            	<a class="dropdown-item" href="login?accion=formulario">Nuevo</a>
             	
                 <div class="dropdown-divider"></div>
                 <a href="#"class="dropdown-item">Trash</a>
@@ -77,7 +77,6 @@
 		  <li class="nav-item dropdown ml-auto">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="seguridad/productos?accion=formulario">Formulario</a>
                 <a href="#" class="dropdown-item">Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout">Cerrar Sessión</a>
