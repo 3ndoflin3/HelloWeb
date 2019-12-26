@@ -144,21 +144,6 @@ public class LoginController extends HttpServlet {
 		uGuardar.setNombre(nombre);
 		uGuardar.setContrasenia(contrasenia);
 		
-		Set<ConstraintViolation<Usuario>> validaciones = validator.validate(uGuardar);
-		if(validaciones.size() >0) {
-
-			StringBuilder mensaje = new StringBuilder();
-			for (ConstraintViolation<Usuario> cv : validaciones) {
-				
-				mensaje.append("<p>");
-				mensaje.append(cv.getPropertyPath()).append(":");
-				mensaje.append(cv.getMessage());				
-				mensaje.append("</p>");
-			}
-			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, mensaje.toString()));
-					
-			
-		}else {  // validacion de campos del formuarlio incorrectos
 			try {
 				
 				if ( pId > 0 ) {  // modificar
@@ -173,7 +158,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre ya existe, selecciona otro"));
 			}	
 			
-		}
+		
 		
 		request.setAttribute("productos", uGuardar);
 		vistaSeleccionada = VIEW_FORM;

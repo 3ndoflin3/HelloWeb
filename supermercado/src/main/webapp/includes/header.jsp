@@ -65,7 +65,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Usuarios</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="login?accion=listar">Todos</a>
-            	<a class="dropdown-item" href="login?accion=formulario">Nuevo</a>
+            	<a class="dropdown-item" href="seguridad/usuarios/formulario.jsp">Nuevo</a>
             	
                 <div class="dropdown-divider"></div>
                 <a href="#"class="dropdown-item">Trash</a>
