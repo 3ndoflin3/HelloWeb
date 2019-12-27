@@ -12,12 +12,16 @@ import javax.servlet.jsp.el.ELException;
 
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
+import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
 public class ProductoDAO implements IDAO<Producto> {
 	
 	private static ProductoDAO INSTANCE;
-		
-	private static final String SQL_GET_ALL = "SELECT id,  nombre, precio, imagen, descripcion, descuento  FROM producto ORDER BY id DESC LIMIT 500;";
+
+	/*JOIN QUERT SYNTAX: ****** SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+	FROM Orders
+	INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;*/
+	private static final String SQL_GET_ALL = "SELECT p.id, p.nombre, p.precio, p.imagen, p.descripcion, p.descuento, u.nombre AS usuario  FROM producto p INNER JOIN usuario u ON p.id_usuario=u.id ORDER BY id ASC LIMIT 500;";
 	private static final String SQL_GET_BY_ID ="SELECT  id, nombre, precio, imagen, descripcion, descuento  FROM producto WHERE id = ? ;"; 
 	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre, precio, imagen, descripcion, descuento ) VALUES ( ?, ?, ?, ?, ? );";
 	private static final String SQL_GET_UPDATE ="UPDATE producto SET nombre = ? WHERE id = ? ;";
@@ -58,6 +62,14 @@ public class ProductoDAO implements IDAO<Producto> {
 				//p.setImagen(rs.getString("imagen"));
 				p.setDescripcion(rs.getString("descripcion"));
 				p.setDescuento(rs.getInt("descuento"));
+				
+				//Crear usuario del producto ************ Solo visualizar el nombre
+				Usuario user = new Usuario();
+				//user.setId( rs.getInt("id"));
+				user.setNombre(rs.getString("usuario"));
+				//user.setContrasenia(rs.getString("constrasenia"));
+				p.setUsuario(user);
+				
 				lista.add(p);
 
 			}

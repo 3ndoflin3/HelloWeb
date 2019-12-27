@@ -187,10 +187,8 @@ public class UsuarioDAO implements IUsuarioDAO{
 
 			pst.setInt(1, id);
 
-			pst.executeQuery();
+			pst.executeUpdate();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return resul;
 	}

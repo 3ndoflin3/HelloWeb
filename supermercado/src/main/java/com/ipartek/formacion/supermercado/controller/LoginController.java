@@ -17,6 +17,7 @@ import org.jboss.logging.Logger;
 
 import com.ipartek.formacion.supermercado.modelo.dao.UsuarioDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 /**
  * Servlet implementation class LoginController
@@ -172,6 +173,9 @@ public class LoginController extends HttpServlet {
 			int pId = Integer.parseInt(id);
 			Usuario usuarioEliminado = usuarioDao.delete(pId);
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_PRIMARY, "Eliminado " + usuarioEliminado.getNombre() ));
+		}catch (MySQLIntegrityConstraintViolationException ex) {
+			LOG.warn("No se puede borrar debido a que provoca la violacion de una restriccion");
+			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "No se puede Eliminar el producto debido a una restriccion"));
 		} catch (Exception e) {
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "No se puede Eliminar el producto"));
 			

@@ -12,9 +12,10 @@
                 <th>ID</th>                
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>imagen</th>                
-                <th>descripcion</th>                
-                <th>descuento</th>                
+                <th>Imagen</th>                
+                <th>Descripcion</th>                
+                <th>Descuento</th>     
+                <th>Nombre usuario</th>           
                 <th>Editar</th>                
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 	<td>${p.imagen }</td>
                 	<td>${p.descripcion}</td>
                 	<td>${p.descuento }</td>
+                	<td>${p.usuario.nombre}</td>
                 	<td><a href="seguridad/productos?accion=formulario&id=${p.id}">Editar</a></td>
             	</tr>
             </c:forEach>	
