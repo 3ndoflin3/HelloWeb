@@ -99,7 +99,8 @@ public class LoginController extends HttpServlet {
 	private void login(HttpServletRequest request, HttpServletResponse response) {
 		Usuario usuario = usuarioDao.existe(nombre, contrasenia);
 		
-		try {
+		
+		if(usuario !=null) { //si es null no existe
 		switch(usuario.getRol().getId()){
 		
 		case 1: //ADMIN
@@ -130,13 +131,6 @@ public class LoginController extends HttpServlet {
 		 *  @see above 																												 *
 		 *  																														 *
 		 ****************************************************************************************************************************/
-		}catch(Exception e) { 
-			LOG.trace(e.getClass().toString());
-			LOG.error(e.getStackTrace());
-			if("class java.lang.NullPointerException".equals(e.getClass().toString())) {
-				request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_DANGER, "Credenciales incorrectas, prueba de nuevo"));
-				vistaSeleccionada = "login.jsp";
-			}
 		}
 	}
 
