@@ -118,11 +118,6 @@ public class LoginController extends HttpServlet {
 			sesionUsuario.setMaxInactiveInterval(60*3); // 3min
 			vistaSeleccionada = "mipanel/index.jsp";
 			break;
-		
-		case 3: // LOGIN INCORRECTO
-			request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_DANGER, "Credenciales incorrectas, prueba de nuevo"));
-			vistaSeleccionada = "login.jsp";
-			break;
 			
 		default: //CUALQUIER OTRO || MENSAJE DIFERENTE AL CASO 3
 			request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_DANGER, "Credenciales incorrectas, intentalo de nuevo"));

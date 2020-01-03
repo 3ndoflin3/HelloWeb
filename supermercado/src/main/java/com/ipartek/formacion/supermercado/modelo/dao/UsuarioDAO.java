@@ -65,8 +65,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 			pst.setString(2, contrasenia);
 
 			LOG.debug(pst);
-			
-			if(pst.executeQuery() != null) {
+	
 				// ejecutar sentencia SQL y obtener Resultado
 				try (ResultSet rs = pst.executeQuery()) {
 	
@@ -75,11 +74,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 					}
 				}
 				
-			}else {
-				usuario.setRol(new Rol());
-				usuario.getRol().setId(3);
-				usuario.getRol().setNombre("No existe el usuario introducido");
-			}
+			
 		} catch (SQLException e) {
 			LOG.error(e);
 		}
