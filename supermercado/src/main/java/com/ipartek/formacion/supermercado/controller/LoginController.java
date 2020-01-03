@@ -1,7 +1,6 @@
 package com.ipartek.formacion.supermercado.controller;
 
 import java.io.IOException;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
@@ -51,16 +49,11 @@ public class LoginController extends HttpServlet {
 	 Validator validator;
 
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		id= request.getParameter("id");
@@ -68,9 +61,7 @@ public class LoginController extends HttpServlet {
 		contrasenia = request.getParameter("contrasenia");
 		pAccion = request.getParameter("accion");
 		
-
 		try {
-			
 			
 			switch (pAccion) {
 			case ACCION_LISTAR:
@@ -85,7 +76,6 @@ public class LoginController extends HttpServlet {
 			case ACCION_EDITAR:	
 				irFormulario(request, response);
 				break;
-				
 			case ACCION_LOGIN:
 				login(request, response);
 				break;
@@ -94,7 +84,6 @@ public class LoginController extends HttpServlet {
 				break;
 			
 			}
-			
 			
 		}catch (Exception e) {
 			LOG.error(e);
@@ -110,18 +99,49 @@ public class LoginController extends HttpServlet {
 	private void login(HttpServletRequest request, HttpServletResponse response) {
 		Usuario usuario = usuarioDao.existe(nombre, contrasenia);
 		
-		if ( usuario!=null ) {
-			LOG.infof("login correcto " + usuario);
-			HttpSession session = request.getSession();
-			session.setAttribute("usuarioLogeado", usuario);
-			session.setMaxInactiveInterval(60*3); // 3min
+		try {
+		switch(usuario.getRol().getId()){
+		
+		case 1: //ADMIN
+			LOG.info("login admin correcto " + usuario);
+			HttpSession sesionAdmin = request.getSession();
+			sesionAdmin.setAttribute("usuarioLogeado", usuario);
+			sesionAdmin.setMaxInactiveInterval(60*3); // 3min
 			
 			vistaSeleccionada = "seguridad/index.jsp";
+			break;
 			
-		}else {
-			
+		case 2: //USUARIO
+			LOG.info("login usuario correcto " + usuario);
+			HttpSession sesionUsuario = request.getSession();
+			sesionUsuario.setAttribute("usuarioLogeado", usuario);
+			sesionUsuario.setMaxInactiveInterval(60*3); // 3min
+			vistaSeleccionada = "mipanel/index.jsp";
+			break;
+		
+		case 3: // LOGIN INCORRECTO
 			request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_DANGER, "Credenciales incorrectas, prueba de nuevo"));
+			vistaSeleccionada = "login.jsp";
+			break;
 			
+		default: //CUALQUIER OTRO || MENSAJE DIFERENTE AL CASO 3
+			request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_DANGER, "Credenciales incorrectas, intentalo de nuevo"));
+			vistaSeleccionada = "login.jsp";
+			break;
+		}
+	
+		 /**************************************************************************************************************************** 
+		 * CATCH CON UN IF EN CASO DE QUE EL USUARIO QUE RECIBA SEA NULL															 *
+		 *  @see above 																												 *
+		 *  																														 *
+		 ****************************************************************************************************************************/
+		}catch(Exception e) { 
+			LOG.trace(e.getClass().toString());
+			LOG.error(e.getStackTrace());
+			if("class java.lang.NullPointerException".equals(e.getClass().toString())) {
+				request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_DANGER, "Credenciales incorrectas, prueba de nuevo"));
+				vistaSeleccionada = "login.jsp";
+			}
 		}
 	}
 

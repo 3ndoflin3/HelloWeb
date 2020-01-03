@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import org.jboss.logging.Logger;
 
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
+import com.ipartek.formacion.supermercado.modelo.pojo.Rol;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
-public class UsuarioDAO implements IUsuarioDAO{
+public class UsuarioDAO implements IUsuarioDAO {
 
 	private final static Logger LOG = Logger.getLogger(UsuarioDAO.class);
 	private static UsuarioDAO INSTANCE = null;
@@ -48,14 +49,16 @@ public class UsuarioDAO implements IUsuarioDAO{
 	 * @param contrasenya
 	 * @return Usuario con datos si existe, null en caso de no existir
 	 */
+	@SuppressWarnings("null")
 	@Override
 	public Usuario existe(String nombre, String contrasenia) {
 
 		Usuario usuario = null;
 
-		LOG.debugv("nombre =" + nombre + " contrasenia= " + contrasenia);
+		LOG.debug("nombre =" + nombre + " contrasenia= " + contrasenia);
 
-		try (Connection con = ConnectionManager.getConnection(); PreparedStatement pst = con.prepareStatement(SQL_EXISTE);) {
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_EXISTE);) {
 
 			// sustituir ? por parametros
 			pst.setString(1, nombre);
@@ -63,15 +66,20 @@ public class UsuarioDAO implements IUsuarioDAO{
 
 			LOG.debug(pst);
 			
-			
-			// ejecutar sentencia SQL y obtener Resultado
-			try (ResultSet rs = pst.executeQuery()) {
-
-				if (rs.next()) {
-					usuario = mapper(rs);
+			if(pst.executeQuery() != null) {
+				// ejecutar sentencia SQL y obtener Resultado
+				try (ResultSet rs = pst.executeQuery()) {
+	
+					if (rs.next()) {
+						usuario = mapper(rs);
+					}
 				}
+				
+			}else {
+				usuario.setRol(new Rol());
+				usuario.getRol().setId(3);
+				usuario.getRol().setNombre("No existe el usuario introducido");
 			}
-
 		} catch (SQLException e) {
 			LOG.error(e);
 		}
@@ -87,6 +95,7 @@ public class UsuarioDAO implements IUsuarioDAO{
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
 				ResultSet rs = pst.executeQuery()) {
+			LOG.debug(pst);
 
 			while (rs.next()) {
 				/*
@@ -99,12 +108,11 @@ public class UsuarioDAO implements IUsuarioDAO{
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
 		return lista;
 	}
-
 
 	@Override
 	public Usuario getById(int id) {
@@ -114,24 +122,25 @@ public class UsuarioDAO implements IUsuarioDAO{
 				PreparedStatement pst = con.prepareStatement(SQL_GET_BY_ID)) {
 
 			pst.setInt(1, id);
-
+			LOG.debug(pst);
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
 					resul = mapper(rs);
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 		return resul;
 	}
-	
-	
+
 	public boolean update(int id, Usuario pojo) throws Exception {
 		boolean resultado = false;
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_UPDATE)) {
 
+			LOG.debug(pst);
+			
 			pst.setString(1, pojo.getNombre());
 			pst.setString(2, pojo.getContrasenia());
 			pst.setInt(3, pojo.getId());
@@ -144,7 +153,7 @@ public class UsuarioDAO implements IUsuarioDAO{
 		}
 		return resultado;
 	}
-	
+
 	@Override
 	public Usuario create(Usuario pojo) throws Exception {
 
@@ -154,6 +163,8 @@ public class UsuarioDAO implements IUsuarioDAO{
 			pst.setString(1, pojo.getNombre());
 			pst.setString(2, pojo.getContrasenia());
 
+			LOG.debug(pst);
+			
 			int affectedRows = pst.executeUpdate();
 			if (affectedRows == 1) {
 				// conseguimos el ID que acabamos de crear
@@ -164,13 +175,15 @@ public class UsuarioDAO implements IUsuarioDAO{
 
 			}
 
+		}catch(SQLException e) {
+			LOG.error(e);
 		}
 
 		return pojo;
 	}
 
 	private Usuario mapper(ResultSet rs) throws SQLException {
-		
+
 		Usuario u = new Usuario();
 		u.setId(rs.getInt("id"));
 		u.setNombre(rs.getString("nombre"));
@@ -188,10 +201,11 @@ public class UsuarioDAO implements IUsuarioDAO{
 			pst.setInt(1, id);
 
 			pst.executeUpdate();
-			
+
+		}catch(SQLException e) {
+			LOG.error(e);
 		}
 		return resul;
 	}
-
 
 }
