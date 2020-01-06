@@ -1,4 +1,4 @@
-package com.ipartek.formacion.supermercado.controller.seguridad;
+package com.ipartek.formacion.supermercado.mipanel;
 
 import java.io.IOException;
 import java.util.Set;
@@ -17,11 +17,12 @@ import javax.validation.ValidatorFactory;
 import com.ipartek.formacion.supermercado.controller.Alerta;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
+import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
 /**
  * Servlet implementation class ProductosController
  */
-@WebServlet("/seguridad/productos")
+@WebServlet("/mipanel/productos")
 public class ProductosController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -220,9 +221,10 @@ public class ProductosController extends HttpServlet {
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
+		Usuario user = (Usuario) request.getAttribute("usuarioLogeado");
 		int []rol = {1,2};
 		request.setAttribute("rol", rol );
-		request.setAttribute("productos", dao.getAll() );
+		request.setAttribute("productos", dao.getByUser(user) );
 		vistaSeleccionda = VIEW_TABLA;
 		
 	}

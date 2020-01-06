@@ -180,6 +180,45 @@ public class ProductoDAO implements IDAO<Producto> {
 		return pojo;
 	}
 
+	//TODO crear metodo para ver productos por usuario 
 	
+	public ArrayList<Producto> getByUser(Usuario usuario) {
+		ArrayList<Producto> lista = new ArrayList<Producto>();
+
+		String SQL_GET_BY_USER = "SELECT * FROM usuario u, producto p, rol r WHERE p.id_usuario = u.id AND r.id = u.id_rol AND u.id_rol = ?;";
+		
+		
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_BY_USER);
+				) {
+			pst.setString(1, String.valueOf(usuario.getRol().getId()));
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				
+				Producto p = new Producto();
+				p.setId( rs.getInt("id"));
+				p.setNombre(rs.getString("nombre"));
+				p.setPrecio(rs.getFloat("precio"));
+				//p.setImagen(rs.getString("imagen"));
+				p.setDescripcion(rs.getString("descripcion"));
+				p.setDescuento(rs.getInt("descuento"));
+				
+				//Crear usuario del producto ************ Solo visualizar el nombre
+				Usuario user = new Usuario();
+				//user.setId( rs.getInt("id"));
+				user.setNombre(rs.getString("usuario"));
+				//user.setContrasenia(rs.getString("constrasenia"));
+				p.setUsuario(user);
+				
+				lista.add(p);
+
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lista;		
+	}
 	
 }

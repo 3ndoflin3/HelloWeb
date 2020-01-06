@@ -2,7 +2,6 @@
 
 <%@ include file="/includes/header.jsp" %>   
     	
-	
 	<a href="seguridad/productos?accion=formulario">Nuevo Producto</a>
 	${productos}
 	

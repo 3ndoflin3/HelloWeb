@@ -41,7 +41,8 @@ public class RolUsuarioFilter implements Filter {
 		HttpSession session = req.getSession();
 		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuarioLogeado");
 		
-		if ( usuarioLogeado != null && usuarioLogeado.getRol().getId() == Rol.ROL_ADMIN ) {
+		if ( usuarioLogeado != null && usuarioLogeado.getRol().getId() == Rol.ROL_ADMIN 
+				|| usuarioLogeado.getRol().getId() == Rol.ROL_USUARIO ) {
 		
 			chain.doFilter(request, response);
 			
@@ -52,7 +53,7 @@ public class RolUsuarioFilter implements Filter {
 			res.sendRedirect( req.getContextPath() +  "/login.jsp");
 				
 		}
-		chain.doFilter(request, response);
+		//chain.doFilter(request, response);
 	}
 
 
