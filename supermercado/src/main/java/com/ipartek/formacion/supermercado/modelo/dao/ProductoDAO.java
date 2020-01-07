@@ -12,7 +12,7 @@ import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
-public class ProductoDAO implements IDAO<Producto> {
+public class ProductoDAO implements IProductoDAO{
 	
 	private static ProductoDAO INSTANCE;
 
