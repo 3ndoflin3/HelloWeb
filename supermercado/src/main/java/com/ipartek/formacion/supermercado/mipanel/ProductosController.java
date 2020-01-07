@@ -123,7 +123,6 @@ public class ProductosController extends HttpServlet {
 					listar(request, response);
 					break;
 				}
-				/** @SuppressWarnings("unreachable") */
 			}catch (ProductoException ex) {
 				// TODO log
 				ex.printStackTrace();

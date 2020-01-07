@@ -250,7 +250,7 @@ public class ProductoDAO implements IProductoDAO{
 			}
 		rs.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 
 		return p;
