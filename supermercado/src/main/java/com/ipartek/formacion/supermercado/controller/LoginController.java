@@ -60,7 +60,8 @@ public class LoginController extends HttpServlet {
 		nombre = request.getParameter("nombre");
 		contrasenia = request.getParameter("contrasenia");
 		pAccion = request.getParameter("accion");
-		
+		int []rol = {1,2};
+		request.getSession().setAttribute("rol", rol );
 		try {
 			
 			switch (pAccion) {

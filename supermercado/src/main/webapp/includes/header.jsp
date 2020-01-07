@@ -29,7 +29,6 @@
 
   </head>
   <body id="top">
-   ${usuarioLogeado.rol}
   <div class="bs-example">
     <ul class="nav nav-pills mb-5">
         <li class="nav-item">
@@ -53,7 +52,7 @@
             	
 		  -->
 	 		<c:if test="${usuarioLogeado.rol.id eq rol[1]}" >
-         		<p>el id es 2</p> <!-- User -->
+         		<!-- <p>el id es 2</p> --> <!-- User -->
          		<li class="nav-item dropdown">
 		            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Productos</a>
 		            <div class="dropdown-menu">
@@ -93,11 +92,9 @@
 		        </li>
 				
          	</c:if>
-         	
-		
 		    
 	  	<li class="nav-item dropdown ml-auto">
-           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">${usuario.nombre}</a>
+           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">${usuarioLogeado.nombre}</a>
            <div class="dropdown-menu dropdown-menu-right">
                <a href="#" class="dropdown-item">Settings</a>
                <div class="dropdown-divider"></div>

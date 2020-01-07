@@ -25,7 +25,7 @@ public interface IProductoDAO extends IDAO<Producto>{
 	 * @throws ProductoException (Cuando el producto que intenta recuperar no pertenece al Usuario)
 	 */
 	
-	Producto getByIdByUser(int idProducto, int idUsuario) throws ProductoException;
+	Producto getByIdByUser(int idUsuario, int idProducto) throws ProductoException;
 	
 	/**
 	 * 
@@ -48,5 +48,5 @@ public interface IProductoDAO extends IDAO<Producto>{
 	 * @return Producto eliminado si lo encuentra, lanza una excepcion si no lo encuentra por su idUsuario
 	 * @throws ProductoException
 	 */
-	public Producto deleteByUser (int idProducto) throws ProductoException;
+	public Producto deleteByUser (int idProducto, int idUsuario) throws ProductoException;
 }

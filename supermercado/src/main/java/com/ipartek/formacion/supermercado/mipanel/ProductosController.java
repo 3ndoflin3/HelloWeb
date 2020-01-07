@@ -180,7 +180,7 @@ public class ProductosController extends HttpServlet {
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, mensaje.toString()));
 					
 			
-		}else {  // validacion de campos del formuarlio incorrectos
+		}else {  // validacion de campos del formulario incorrectos
 			try {
 				
 				if ( id > 0 ) {  // modificar
@@ -222,9 +222,7 @@ public class ProductosController extends HttpServlet {
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
 		Usuario user = (Usuario) request.getAttribute("usuarioLogeado");
-		int []rol = {1,2};
-		request.setAttribute("rol", rol );
-		request.setAttribute("productos", dao.getByUser(user) );
+		request.setAttribute("productos", dao.getAllByUser(user.getId()) );
 		vistaSeleccionda = VIEW_TABLA;
 		
 	}
