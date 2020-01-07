@@ -14,8 +14,12 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.supermercado.controller.Alerta;
+import com.ipartek.formacion.supermercado.filters.RolUsuarioFilter;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
+import com.ipartek.formacion.supermercado.modelo.dao.ProductoException;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
@@ -30,13 +34,14 @@ public class ProductosController extends HttpServlet {
 	private static final String VIEW_FORM = "productos/formulario.jsp";
 	private static String vistaSeleccionda = VIEW_TABLA;
 	private static ProductoDAO dao;
-	
+	private final static Logger LOG = Logger.getLogger(ProductosController.class);
+
 	//acciones
 	public static final String ACCION_LISTAR = "listar";
 	public static final String ACCION_IR_FORMULARIO = "formulario";
 	public static final String ACCION_GUARDAR = "guardar";   // crear y modificar
 	public static final String ACCION_ELIMINAR = "eliminar";
-	
+	private boolean isRedirect;
 	
 	//Crear Factoria y Validador
 	 ValidatorFactory factory ;
@@ -88,7 +93,7 @@ public class ProductosController extends HttpServlet {
 
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
+			isRedirect = false;
 			//recoger parametros
 			pAccion = request.getParameter("accion");
 			pId = request.getParameter("id");
@@ -118,9 +123,10 @@ public class ProductosController extends HttpServlet {
 					listar(request, response);
 					break;
 				}
-				
-				
-				
+				/** @SuppressWarnings("unreachable") */
+			}catch (ProductoException ex) {
+				// TODO log
+				ex.printStackTrace();
 				
 			}catch (Exception e) {
 				// TODO log
@@ -161,9 +167,9 @@ public class ProductosController extends HttpServlet {
 		Producto pGuardar = new Producto();		
 		pGuardar.setId(id);
 		pGuardar.setNombre(pNombre);
-		pGuardar.setPrecio(Float.parseFloat(pPrecio));
-		pGuardar.setImagen(pImagen);
-		pGuardar.setDescripcion(pDescripcion);
+//		pGuardar.setPrecio(Float.parseFloat(pPrecio));
+//		pGuardar.setImagen(pImagen);
+//		pGuardar.setDescripcion(pDescripcion);
 		pGuardar.setDescuento(Integer.parseInt(pDescuento));
 		
 		Set<ConstraintViolation<Producto>> validaciones = validator.validate(pGuardar);
@@ -182,14 +188,20 @@ public class ProductosController extends HttpServlet {
 			
 		}else {  // validacion de campos del formulario incorrectos
 			try {
-				
-				if ( id > 0 ) {  // modificar
-					
-					dao.update(id, pGuardar);		
-					
-				}else {            // crear
-					dao.create(pGuardar);
+				Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogeado");
+				Producto comparar = dao.getByIdByUser(user.getId(), pGuardar.getId());
+				if(comparar != null) {
+					if ( id > 0 ) {  // modificar
+						
+						dao.update(id, pGuardar);		
+						
+					}else {            // crear
+						dao.create(pGuardar);
+					}
+				}else {
+					throw new ProductoException("El usuario no es dueño del producto");
 				}
+				
 				
 			}catch (Exception e) {  // validacion a nivel de base datos
 				request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre ya existe, selecciona otro"));
@@ -206,10 +218,10 @@ public class ProductosController extends HttpServlet {
 	}
 
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) {
-	
+		Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogeado");
 		int id = Integer.parseInt(pId);
 		try {
-			Producto pEliminado = dao.delete(id);
+			Producto pEliminado = dao.deleteByUser(id, user.getId());
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_PRIMARY, "Eliminado " + pEliminado.getNombre() ));
 		} catch (Exception e) {
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "No se puede Eliminar el producto"));
@@ -221,7 +233,7 @@ public class ProductosController extends HttpServlet {
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
-		Usuario user = (Usuario) request.getAttribute("usuarioLogeado");
+		Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogeado");
 		request.setAttribute("productos", dao.getAllByUser(user.getId()) );
 		vistaSeleccionda = VIEW_TABLA;
 		

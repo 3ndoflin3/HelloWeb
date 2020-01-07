@@ -20,7 +20,7 @@ public class ProductoDAO implements IProductoDAO{
 	FROM Orders
 	INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;*/
 	private static final String SQL_GET_ALL = "SELECT p.id, p.nombre, p.precio, p.imagen, p.descripcion, p.descuento, u.nombre AS usuario  FROM producto p INNER JOIN usuario u ON p.id_usuario=u.id ORDER BY id ASC LIMIT 500;";
-	private static final String SQL_GET_BY_ID ="SELECT  id, nombre, precio, imagen, descripcion, descuento  FROM producto WHERE id = ? ;"; 
+	private static final String SQL_GET_BY_ID ="SELECT  id, nombre, precio, imagen, descripcion, descuento, id_usuario FROM producto WHERE id = ? ;"; 
 	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre, precio, imagen, descripcion, descuento ) VALUES ( ?, ?, ?, ?, ? );";
 	private static final String SQL_GET_UPDATE ="UPDATE producto SET nombre = ? WHERE id = ? ;";
 	private static final String SQL_DELETE ="DELETE FROM producto WHERE id = ? ;";
@@ -103,7 +103,7 @@ public class ProductoDAO implements IProductoDAO{
 					registro = new Producto();
 					registro.setId( rs.getInt("id"));
 					registro.setNombre(rs.getString("nombre"));
-						
+					registro.getUsuario().setId(rs.getInt("id_usuario"));;	
 				}
 			}	
 
@@ -245,6 +245,8 @@ public class ProductoDAO implements IProductoDAO{
 				Usuario user = new Usuario();
 				user.setNombre(rs.getString("usuario"));
 				p.setUsuario(user);
+			}else {
+				throw new ProductoException("Producto no encontrado por tu usuario");
 			}
 		rs.close();
 		} catch (SQLException e) {

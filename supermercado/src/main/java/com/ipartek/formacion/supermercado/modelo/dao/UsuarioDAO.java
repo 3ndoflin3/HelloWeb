@@ -21,7 +21,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private static final String SQL_GET_ALL = "SELECT id, nombre, contrasenia  FROM usuario ORDER BY id DESC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT id, nombre, contrasenia FROM usuario WHERE u.id = ?;";
 	private static final String SQL_GET_ALL_BY_NOMBRE = "SELECT u.id, u.nombre, contrasenia FROM usuario  WHERE nombre LIKE ? ORDER BY u.nombre ASC LIMIT 500;";
-	private static final String SQL_EXISTE = " SELECT r.id, u.nombre, u.contrasenia from usuario u, rol r where u.id_rol = r.id and u.nombre = ? and u.contrasenia = ?;";
+	private static final String SQL_EXISTE = " SELECT id, nombre, contrasenia, id_rol from usuario u where nombre = ? and contrasenia = ?;";
 	private static final String SQL_INSERT = "INSERT INTO usuario ( nombre, contrasenia) VALUES ( ? , ?);";
 	private static final String SQL_UPDATE = "UPDATE usuario SET nombre= ?, contrasenia= ? WHERE id = ?;";
 	private static final String SQL_DELETE = "DELETE FROM usuario WHERE id = ?;";
@@ -179,7 +179,8 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private Usuario mapper(ResultSet rs) throws SQLException {
 
 		Usuario u = new Usuario();
-		u.getRol().setId((rs.getInt("id")));
+		u.setId(rs.getInt("id"));
+		u.getRol().setId(rs.getInt("id_rol"));
 		u.setNombre(rs.getString("nombre"));
 		u.setContrasenia(String.valueOf(rs.getInt("contrasenia")));
 		return u;

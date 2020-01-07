@@ -18,12 +18,12 @@ import com.ipartek.formacion.supermercado.modelo.pojo.Rol;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
 /**
- * Servlet Filter implementation class RolUsuarioFilter
+ * Servlet Filter implementation class RolAdminFilter
  */
-@WebFilter({"/mipanel/*" })
-public class RolUsuarioFilter implements Filter {
+@WebFilter({ "/seguridad/*"})
+public class RolAdminFilter implements Filter {
 
-	private final static Logger LOG = Logger.getLogger(RolUsuarioFilter.class);
+	private final static Logger LOG = Logger.getLogger(RolAdminFilter.class);
 
 
 	public void init(FilterConfig fConfig) throws ServletException {
@@ -40,7 +40,7 @@ public class RolUsuarioFilter implements Filter {
 		HttpSession session = req.getSession();
 		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuarioLogeado");
 		
-		if ( usuarioLogeado != null && usuarioLogeado.getRol().getId() == Rol.ROL_USUARIO ) {
+		if ( usuarioLogeado != null && usuarioLogeado.getRol().getId() == Rol.ROL_ADMIN ) {
 		
 			chain.doFilter(request, response);
 			
