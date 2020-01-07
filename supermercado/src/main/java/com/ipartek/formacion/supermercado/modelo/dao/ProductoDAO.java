@@ -24,7 +24,7 @@ public class ProductoDAO implements IProductoDAO{
 	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre, precio, imagen, descripcion, descuento ) VALUES ( ?, ?, ?, ?, ? );";
 	private static final String SQL_GET_UPDATE ="UPDATE producto SET nombre = ? WHERE id = ? ;";
 	private static final String SQL_DELETE ="DELETE FROM producto WHERE id = ? ;";
-	
+	private static final String SQL_GET_ALL_BY_USER = "SELECT p.id, p.nombre, p.precio, p.imagen, p.descripcion, p.descuento, u.nombre AS usuario  FROM producto p INNER JOIN usuario u ON p.id_usuario=u.id AND p.id_usuario = ? ORDER BY id ASC LIMIT 500;";
 		
 	
 	private ProductoDAO() {		
@@ -219,6 +219,63 @@ public class ProductoDAO implements IProductoDAO{
 		}
 
 		return lista;		
+	}
+
+	@Override
+	public List<Producto> getAllByUser(int idUsuario) {
+		ArrayList<Producto> lista = new ArrayList<Producto>();
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
+				) {
+			pst.setInt(1, idUsuario);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				
+				Producto p = new Producto();
+				p.setId( rs.getInt("id"));
+				p.setNombre(rs.getString("nombre"));
+				p.setPrecio(rs.getFloat("precio"));
+				//p.setImagen(rs.getString("imagen"));
+				p.setDescripcion(rs.getString("descripcion"));
+				p.setDescuento(rs.getInt("descuento"));
+				
+				//Crear usuario del producto ************ Solo visualizar el nombre
+				Usuario user = new Usuario();
+				//user.setId( rs.getInt("id"));
+				user.setNombre(rs.getString("usuario"));
+				//user.setContrasenia(rs.getString("constrasenia"));
+				p.setUsuario(user);
+				
+				lista.add(p);
+
+			}
+		rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
+
+	@Override
+	public Producto getByIdByUser(int idProducto, int idUsuario) throws ProductoException {
+		
+		return null;
+	}
+
+	@Override
+	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws ProductoException {
+		
+		return null;
+	}
+
+	@Override
+	public Producto deleteByUser(int idProducto) throws ProductoException {
+		
+		throw new ProductoException(ProductoException.EXCEPTION_UNAUTHORIZED);
+		
+		//return null;
 	}
 	
 }

@@ -32,7 +32,7 @@ public interface IProductoDAO extends IDAO<Producto>{
 	 * @param idProducto
 	 * @param idUsuario
 	 * @param pojo
-	 * @return @class Producto actualizado si lo encuentra, null si no lo encuentra
+	 * @return @class Producto actualizado si lo encuentra, null si no lo encuentra por su idUsuario
 	 * @throws @class ProductoException
 	 * 		<ol>
 	 * 			<li> Cuando intenta eliminar un producto que no pertenece al usuario </li>
@@ -45,7 +45,7 @@ public interface IProductoDAO extends IDAO<Producto>{
 	/**
 	 * 
 	 * @param idProducto
-	 * @return Producto eliminado si lo encuentra, lanza una excepcion si no lo encuentra
+	 * @return Producto eliminado si lo encuentra, lanza una excepcion si no lo encuentra por su idUsuario
 	 * @throws ProductoException
 	 */
 	public Producto deleteByUser (int idProducto) throws ProductoException;
