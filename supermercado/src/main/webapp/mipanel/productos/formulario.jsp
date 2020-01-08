@@ -4,31 +4,34 @@
     	
 	<h1>FORMULARIO</h1>
 	
-	<form action="mipanel/productos" method="post" class="mb-4">
+	<form action="mipanel/productos" method="post">
+	
 		
-		<div class="form-group">
-			<label>Nombre:</label>
-			<input type="text" name="nombre" value="${producto.nombre}" class="form-control" placeholder="mínimo 2 letras, máximo 50">
-		</div>
+		<input type="text" name="id" value="${producto.id}">
+		<br>
+		<label>Nombre:</label>
+		<input type="text" name="nombre" value="${producto.nombre}">
 		
-		<div class="form-group">				
-			<label>Descuento:</label>
-			<input type="number" min="0" max="100" name="descuento" value="${producto.descuento}" class="form-control">
-		</div>	
+		<br>
+		<label>Precio:</label>
+		<input type="text" name="precio" value="${producto.precio}">
 		
-		<div class="form-group">		
-			<label>Usuario</label>
-			<select name="usuarioId" class="custom-select">
-				<c:forEach items="${usuarios}" var="u">
-					<option value="${u.id}"  ${(u.id eq producto.usuario.id)?"selected":""} >${u.nombre}</option>	
-				</c:forEach>
-			</select>
-		</div>
+		<br>
+		<label>Imagen:</label>
+		<input type="text" name="imagen" value="${producto.imagen}">
 		
-		<input type="hidden" name="id" value="${producto.id}">
+		<br>
+		<label>Descripcion:</label>
+		<input type="text" name="descripcion" value="${producto.descripcion}">
+		
+		<br>
+		<label>Descuento:</label>
+		<input type="text" name="descuento" value="${producto.descuento}">
+		
+		<br>
+		
 		<input type="hidden" name="accion" value="guardar">
-		
-		<input type="submit" value="${(producto.id>0)?"Modificar":"Crear" }" class="btn btn-block btn-primary">
+		<input type="submit" value="${(producto.id>0)?"Modificar":"Crear" }">
 	
 	</form>
 	
@@ -47,7 +50,7 @@
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>

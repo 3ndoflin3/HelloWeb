@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.controller.seguridad;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Set;
 
 import javax.servlet.ServletConfig;
@@ -136,7 +137,7 @@ public class ProductosController extends HttpServlet {
 	}
 
 
-	private void irFormulario(HttpServletRequest request, HttpServletResponse response) {
+	private void irFormulario(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		
 		Producto pEditar = new Producto();
 		

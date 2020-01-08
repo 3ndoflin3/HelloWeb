@@ -3,7 +3,7 @@
 <%@ include file="/includes/header.jsp" %>   
     	
 	
-	<a href="seguridad/productos?accion=formulario">Nuevo Producto</a>
+	<a href="mipanel/productos?accion=formulario">Nuevo Producto</a>
 	
 	<table  class="tabla display" style="width:100%">
         <thead>

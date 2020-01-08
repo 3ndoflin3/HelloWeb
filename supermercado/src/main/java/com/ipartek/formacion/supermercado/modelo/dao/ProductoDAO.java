@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
@@ -26,10 +28,13 @@ public class ProductoDAO implements IProductoDAO{
 	private static final String SQL_DELETE ="DELETE FROM producto WHERE id = ? ;";
 	//CRUD BY USER
 	private static final String SQL_GET_ALL_BY_USER = "SELECT p.id, p.nombre, p.precio, p.imagen, p.descripcion, p.descuento, u.nombre AS usuario  FROM producto p INNER JOIN usuario u ON p.id_usuario=u.id AND p.id_usuario = ? ORDER BY id ASC LIMIT 500;";
-	private static final String SQL_GET_ALL_BY_ID_USER = "SELECT p.id, p.nombre, p.precio, p.imagen, p.descripcion, p.descuento, u.nombre AS usuario  FROM producto p INNER JOIN usuario u ON p.id_usuario=u.id AND p.id_usuario = ? AND p.id = ? ORDER BY id ASC LIMIT 500;";
+	//private static final String SQL_GET_ALL_BY_ID_USER = "SELECT p.id, p.nombre, p.precio, p.imagen, p.descripcion, p.descuento, u.nombre AS usuario  FROM producto p INNER JOIN usuario u ON p.id_usuario=u.id AND p.id_usuario = ? AND p.id = ? ORDER BY id ASC LIMIT 500;";
 	private static final String SQL_GET_UPDATE_BY_USER ="UPDATE producto SET nombre = ? WHERE id = ? AND id_usuario = ?;";
 	private static final String SQL_DELETE_BY_USER ="DELETE FROM producto WHERE id = ? AND id_usuario = ?;";
 		
+	//LOGGER
+	private final static Logger LOG = Logger.getLogger(ProductoDAO.class);
+
 	
 	private ProductoDAO() {		
 		super();			
@@ -61,7 +66,7 @@ public class ProductoDAO implements IProductoDAO{
 				p.setId( rs.getInt("id"));
 				p.setNombre(rs.getString("nombre"));
 				p.setPrecio(rs.getFloat("precio"));
-				//p.setImagen(rs.getString("imagen"));
+				p.setImagen(rs.getString("imagen"));
 				p.setDescripcion(rs.getString("descripcion"));
 				p.setDescuento(rs.getInt("descuento"));
 				
@@ -84,7 +89,7 @@ public class ProductoDAO implements IProductoDAO{
 	}
 
 	@Override
-	public Producto getById(int id) {
+	public Producto getById(int id) throws SQLException {
 		
 		Producto registro = null;
 		
@@ -103,12 +108,17 @@ public class ProductoDAO implements IProductoDAO{
 					registro = new Producto();
 					registro.setId( rs.getInt("id"));
 					registro.setNombre(rs.getString("nombre"));
+					registro.setPrecio(rs.getFloat("precio"));
+					registro.setImagen(rs.getString("imagen"));
+					registro.setDescripcion(rs.getString("descripcion"));
+					registro.setDescuento(rs.getInt("descuento"));
 					registro.getUsuario().setId(rs.getInt("id_usuario"));;	
 				}
 			}	
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.warn(e);
+			throw e;
 		}
 		
 		
@@ -138,7 +148,7 @@ public class ProductoDAO implements IProductoDAO{
 	}
 
 	@Override
-	public boolean update(int id, Producto pojo) throws Exception {
+	public boolean update(int id, Producto pojo) throws ProductoException, SQLException {
 		boolean resultado = false;
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_GET_UPDATE)) {
@@ -150,7 +160,7 @@ public class ProductoDAO implements IProductoDAO{
 			if (affectedRows == 1) {
 				pojo.setId(id);				
 			}else {
-				throw new Exception("No se encontro registro para id=" + id);
+				throw new ProductoException("No se encontro registro para id=" + id);
 			}
 
 		}
@@ -158,7 +168,7 @@ public class ProductoDAO implements IProductoDAO{
 	}
 
 	@Override
-	public Producto create(Producto pojo) throws Exception {
+	public Producto create(Producto pojo) throws ProductoException, SQLException {
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement( SQL_GET_INSERT, Statement.RETURN_GENERATED_KEYS)) {
@@ -186,7 +196,7 @@ public class ProductoDAO implements IProductoDAO{
 
 
 	@Override
-	public List<Producto> getAllByUser(int idUsuario) {
+	public List<Producto> getAllByUser(int idUsuario) throws SQLException, ProductoException{
 		ArrayList<Producto> lista = new ArrayList<Producto>();
 
 		try (Connection con = ConnectionManager.getConnection();
@@ -215,15 +225,13 @@ public class ProductoDAO implements IProductoDAO{
 
 			}
 		rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 
 		return lista;
 	}
 
 	@Override
-	public Producto getByIdByUser(int idUsuario, int idProducto) throws ProductoException {
+	public Producto getByIdByUser(int idUsuario, int idProducto) throws ProductoException, SQLException {
 		Producto p = null;
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
@@ -250,14 +258,15 @@ public class ProductoDAO implements IProductoDAO{
 			}
 		rs.close();
 		} catch (SQLException e) {
-			
+			LOG.error(e.getMessage(), e);
+			throw e;
 		}
 
 		return p;
 	}
 
 	@Override
-	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws ProductoException {
+	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws ProductoException, SQLException {
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement(SQL_GET_UPDATE_BY_USER)) {
 
@@ -273,17 +282,17 @@ public class ProductoDAO implements IProductoDAO{
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error(e.getMessage(), e);
+			throw e;
 		} catch (ProductoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.warn(e.getMessage(), e);
+			throw e;
 		}
 		return pojo;
 	}
 
 	@Override
-	public Producto deleteByUser(int idProducto, int idUsuario) throws ProductoException {
+	public Producto deleteByUser(int idProducto, int idUsuario) throws ProductoException, SQLException {
 		
 		
 		Producto registro = null;
@@ -304,8 +313,8 @@ public class ProductoDAO implements IProductoDAO{
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.warn(e.getMessage());
+			throw e;
 		}
 		return registro;
 		

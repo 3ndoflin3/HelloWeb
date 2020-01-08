@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.modelo.dao;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -17,8 +18,9 @@ public interface IDAO<P> {
 	 * recupera un pojo por su identificador
 	 * @param id identificador
 	 * @return pojo si lo encuentra, si no null
+	 * @throws SQLException 
 	 */
-	P getById(int id);
+	P getById(int id) throws SQLException;
 	
 	/**
 	 * Elimina

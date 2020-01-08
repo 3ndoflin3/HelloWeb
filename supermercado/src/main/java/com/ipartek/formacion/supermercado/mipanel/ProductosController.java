@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.mipanel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Set;
 
 import javax.servlet.ServletConfig;
@@ -17,7 +18,6 @@ import javax.validation.ValidatorFactory;
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.supermercado.controller.Alerta;
-import com.ipartek.formacion.supermercado.filters.RolUsuarioFilter;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoException;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
@@ -41,7 +41,7 @@ public class ProductosController extends HttpServlet {
 	public static final String ACCION_IR_FORMULARIO = "formulario";
 	public static final String ACCION_GUARDAR = "guardar";   // crear y modificar
 	public static final String ACCION_ELIMINAR = "eliminar";
-	private boolean isRedirect;
+	//private boolean isRedirect;
 	
 	//Crear Factoria y Validador
 	 ValidatorFactory factory ;
@@ -93,19 +93,17 @@ public class ProductosController extends HttpServlet {
 
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-			isRedirect = false;
 			//recoger parametros
 			pAccion = request.getParameter("accion");
 			pId = request.getParameter("id");
 			pNombre = request.getParameter("nombre");
-			pPrecio = request.getParameter("precio");
+			pPrecio = "".equals(request.getParameter("precio")) ? "0" :request.getParameter("precio");
 			pImagen = request.getParameter("imagen");
 			pDescripcion = request.getParameter("descripcion");
 			pDescuento = request.getParameter("descuento");
 			
 			
 			try {
-				
 				switch (pAccion) {
 				case ACCION_LISTAR:
 					listar(request, response);
@@ -124,15 +122,14 @@ public class ProductosController extends HttpServlet {
 					break;
 				}
 			}catch (ProductoException ex) {
-				// TODO log
-				ex.printStackTrace();
+				
+				LOG.warn(ex.getMessage());
 				
 			}catch (Exception e) {
 				// TODO log
-				e.printStackTrace();
+				LOG.error(e.getMessage(), e);
 				
 			}finally {
-				
 				request.getRequestDispatcher(vistaSeleccionda).forward(request, response);
 			}
 			
@@ -142,7 +139,7 @@ public class ProductosController extends HttpServlet {
 	}
 
 
-	private void irFormulario(HttpServletRequest request, HttpServletResponse response) {
+	private void irFormulario(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		
 		Producto pEditar = new Producto();
 		
@@ -159,20 +156,20 @@ public class ProductosController extends HttpServlet {
 		
 	}
 
-	private void guardar(HttpServletRequest request, HttpServletResponse response) {
+	private void guardar(HttpServletRequest request, HttpServletResponse response) throws ProductoException, SQLException {
 		
 		
-		int id = Integer.parseInt(pId);
+		int id = "".equals(pId) ? 10 : Integer.parseInt(pId) ;
 		Producto pGuardar = new Producto();		
 		pGuardar.setId(id);
 		pGuardar.setNombre(pNombre);
-//		pGuardar.setPrecio(Float.parseFloat(pPrecio));
-//		pGuardar.setImagen(pImagen);
-//		pGuardar.setDescripcion(pDescripcion);
+		pGuardar.setPrecio(Float.parseFloat(pPrecio));
+		pGuardar.setImagen(pImagen);
+		pGuardar.setDescripcion(pDescripcion);
 		pGuardar.setDescuento(Integer.parseInt(pDescuento));
 		
 		Set<ConstraintViolation<Producto>> validaciones = validator.validate(pGuardar);
-		if(validaciones.size() >0) {
+		if(validaciones.size() >0) { // validacion de campos del formulario incorrectos
 
 			StringBuilder mensaje = new StringBuilder();
 			for (ConstraintViolation<Producto> cv : validaciones) {
@@ -185,7 +182,7 @@ public class ProductosController extends HttpServlet {
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, mensaje.toString()));
 					
 			
-		}else {  // validacion de campos del formulario incorrectos
+		}else {  
 			try {
 				Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogeado");
 				Producto comparar = dao.getByIdByUser(user.getId(), pGuardar.getId());
@@ -200,10 +197,15 @@ public class ProductosController extends HttpServlet {
 				}else {
 					throw new ProductoException("El usuario no es dueño del producto");
 				}
+			
+			}catch (ProductoException e) {  // validacion a nivel de base datos
+				request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "Conflicto con otros productos"));
+				LOG.warn(e.getMessage());
+				throw e;
 				
-				
-			}catch (Exception e) {  // validacion a nivel de base datos
+			}catch (SQLException e) {  // validacion a nivel de base datos
 				request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre ya existe, selecciona otro"));
+				throw e;
 			}	
 			
 		}
@@ -216,24 +218,24 @@ public class ProductosController extends HttpServlet {
 		
 	}
 
-	private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws ProductoException, SQLException {
 		Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogeado");
 		int id = Integer.parseInt(pId);
 		try {
 			Producto pEliminado = dao.deleteByUser(id, user.getId());
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_PRIMARY, "Eliminado " + pEliminado.getNombre() ));
-		} catch (Exception e) {
+		} catch (ProductoException e) {
 			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "No se puede Eliminar el producto"));
-			
+			throw e;
 		}
 		
 		listar(request, response);
 		
 	}
 
-	private void listar(HttpServletRequest request, HttpServletResponse response) {
+	private void listar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ProductoException {
 		Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogeado");
-		request.setAttribute("productos", dao.getAllByUser(user.getId()) );
+		request.setAttribute("productos", dao.getAllByUser(user.getId()));
 		vistaSeleccionda = VIEW_TABLA;
 		
 	}

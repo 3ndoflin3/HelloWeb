@@ -15,7 +15,7 @@ public interface IProductoDAO extends IDAO<Producto>{
 	 * 
 	 * */
 	
-	List<Producto> getAllByUser(int idUsuario);
+	List<Producto> getAllByUser(int idUsuario) throws SQLException, ProductoException;
 	
 	
 	/**
