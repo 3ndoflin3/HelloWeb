@@ -1,0 +1,40 @@
+.product{
+  margin-top: 10%;
+  margin-left: 7%;
+  border: 1px solid black;
+}
+
+
+.product-content{
+  padding-top: 2em;
+}
+
+
+.price span{
+	text-decoration: line-through;
+	color: red;
+}
+
+
+
+.addbtn{
+  width: 100%;
+  background-color: green;
+}
+
+.btn-group{
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: 2em;
+}
+
+.logo img{
+  width: 100%;
+}
+
+
+.product-details{
+  background-color: yellow;
+  margin-top: 5%;
+  margin-left: 15%;
+}

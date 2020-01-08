@@ -1,0 +1,66 @@
+
+
+.navbar-nav>li a{
+    display: inline-flex;
+    justify-content: space-around;
+    background-color: rgb(185, 183, 183);
+    margin-left: 2em;
+}
+
+
+.footer-wrapper{
+	position: fixed;
+	bottom: 0;
+	background-color: indigo;
+	padding: 20px;
+	width:100%;
+	height: 15%;
+}
+
+
+
+
+.navbar-nav .nav-item {
+   
+    background-color: yellow;
+}
+
+
+.info{
+	padding-left: 7em;
+}
+
+
+
+
+
+
+
+
+
+/******************************************MEDIA*QUERIES**************************************************************/
+
+@media (max-width: 62em) {
+	.navbar-nav {
+		padding-top: .425rem;
+		padding-left: 0.75rem;
+	}
+	.navbar-nav .nav-item {
+        float: none;
+        background-color: yellow;
+	}
+	.navbar-brand {
+		float: right;
+	}
+	.navbar-brand,
+	.navbar-nav .nav-item {
+		display: block;
+	}
+	.navbar-nav .nav-item + .nav-item {
+		margin-left: 0;
+	}
+	.dropdown-menu {
+		position: relative;
+		float: none;
+	}
+}
