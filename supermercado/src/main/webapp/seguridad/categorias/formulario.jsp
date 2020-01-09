@@ -15,7 +15,7 @@
 		<br>
 		
 		<input type="hidden" name="accion" value="guardar">
-		<input type="submit" value="${(producto.id>0)?"Modificar":"Crear" }">
+		<input type="submit" value="${(categoria.id>0)?"Modificar":"Crear" }">
 	
 	</form>
 	

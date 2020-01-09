@@ -17,6 +17,13 @@ public class CategoriaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private CategoriaDAO categoriaDao;   
 
+    //acciones
+  	public static final String ACCION_LISTAR = "listar";
+  	public static final String ACCION_IR_FORMULARIO = "formulario";
+  	public static final String ACCION_GUARDAR = "guardar";   // crear y modificar
+  	public static final String ACCION_ELIMINAR = "eliminar";
+  	
+  	
     
     public void init() {
     	
@@ -35,8 +42,25 @@ public class CategoriaController extends HttpServlet {
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) {
 		int id ;
 		String nombre = request.getParameter("nombre");
+		String accion = request.getParameter("accion");
 		
-		
+		switch(accion) {
+		case ACCION_LISTAR:
+			listar();
+			break;
+			
+		case ACCION_GUARDAR:
+			guardar();
+			break;
+			
+		case ACCION_IR_FORMULARIO:
+			irFormulario();
+			break;
+			
+		case ACCION_ELIMINAR: 
+			eliminar();
+			break;
+		}
 		
 		
 		
