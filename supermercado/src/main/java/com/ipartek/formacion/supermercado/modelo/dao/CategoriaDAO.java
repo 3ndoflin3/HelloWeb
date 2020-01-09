@@ -62,13 +62,35 @@ public class CategoriaDAO implements ICategoriaDAO{
 
 	@Override
 	public Categoria getById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Categoria registro = new Categoria();
+		
+		try(Connection con = ConnectionManager.getConnection();
+				CallableStatement cs = con.prepareCall("{Call }")){
+			
+			cs.setInt(1, id);
+			
+			try(ResultSet rs = cs.executeQuery()){
+				if(rs.next()) {
+					registro = mapper(rs);
+				}else {
+					throw new SQLException("No se ha encontrado el registro");
+				}
+			}
+			
+		}
+		
+		return registro;
 	}
 
 	@Override
 	public Categoria delete(int id) throws Exception {
 		LOG.trace("Delete de una categoria");
+		
+		Categoria registro = getById(id);
+		if(registro == null) {
+			throw new Exception("No existe el registro a borrar");
+		}
 		
 		try(Connection con = ConnectionManager.getConnection();
 			CallableStatement cs = con.prepareCall("{CALL pa_categoria_delete(?)}");){
@@ -76,17 +98,21 @@ public class CategoriaDAO implements ICategoriaDAO{
 			cs.setInt(1, id);
 			LOG.debug(cs);
 			
-			int affectedRows = cs.executeUpdate();
+			if(cs.executeUpdate() == 1) {
+				registro.setId(id);
+			}else {
+				throw new Exception("Producto no encontrado");
+			}
 			
-			LOG.debug("registro borrado " + affectedRows);
+			LOG.debug("registro borrado ");
 			
 		}
 		
-		return null;
+		return registro;
 	}
 
 	@Override
-	public boolean update(int id, Categoria pojo) throws Exception {
+	public Categoria update(int id, Categoria pojo) throws Exception {
 		LOG.trace("Update de una categoria");
 		Categoria registro = pojo;
 		try(Connection con = ConnectionManager.getConnection();
@@ -96,12 +122,16 @@ public class CategoriaDAO implements ICategoriaDAO{
 			
 			LOG.debug(cs);
 			
-			int affectedRows = cs.executeUpdate();
-			LOG.debug("registros creados " + affectedRows);
+			if(cs.executeUpdate() == 1) {
+				pojo.setId(id);
+			}else {
+				throw new Exception("Producto no encontrado");
+			}
+			LOG.debug("registros creados ");
 			
 		}
 		
-		return false;
+		return registro;
 	}
 
 	@Override
@@ -133,4 +163,14 @@ public class CategoriaDAO implements ICategoriaDAO{
 		return registro;
 	}
 
+	
+	public Categoria mapper(ResultSet rs) throws SQLException {
+		Categoria c = new Categoria();
+		c.setId(rs.getInt("id"));
+		c.setNombre(rs.getString("nombre"));
+		
+		return c;
+		
+	}
+	
 }

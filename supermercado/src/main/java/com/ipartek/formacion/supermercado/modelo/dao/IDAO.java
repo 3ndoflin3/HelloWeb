@@ -4,6 +4,8 @@ package com.ipartek.formacion.supermercado.modelo.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ipartek.formacion.supermercado.modelo.pojo.Categoria;
+
 
 public interface IDAO<P> {
 	
@@ -37,7 +39,7 @@ public interface IDAO<P> {
 	 * @return pojo modificado
 	 * @throws Exception si no puede modificar o no lo encuentra
 	 */
-	boolean update(int id, P pojo)  throws Exception;
+	Categoria update(int id, P pojo)  throws Exception;
 
 	
 	/**
