@@ -2,7 +2,6 @@ package com.ipartek.formacion.supermercado.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
