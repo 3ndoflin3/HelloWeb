@@ -44,10 +44,7 @@ public class CategoriaDAO implements ICategoriaDAO{
 			try(ResultSet rs = cs.executeQuery()){
 				//TODO mapper 
 				while(rs.next()) {
-					Categoria c = new Categoria();
-					c.setId(rs.getInt("id"));
-					c.setNombre(rs.getString("nombre"));
-					registros.add(c);
+					registros.add(mapper(rs));
 				}
 			}
 			
@@ -66,7 +63,7 @@ public class CategoriaDAO implements ICategoriaDAO{
 		Categoria registro = new Categoria();
 		
 		try(Connection con = ConnectionManager.getConnection();
-				CallableStatement cs = con.prepareCall("{Call }")){
+				CallableStatement cs = con.prepareCall("{Call pa_categoria_getbyid(?)}")){
 			
 			cs.setInt(1, id);
 			
@@ -117,8 +114,8 @@ public class CategoriaDAO implements ICategoriaDAO{
 		Categoria registro = pojo;
 		try(Connection con = ConnectionManager.getConnection();
 			CallableStatement cs = con.prepareCall("{CALL pa_categoria_update(?,?)}");){
-			cs.setString(1, pojo.getNombre());
-			cs.setInt(2, id);
+			cs.setInt(1, id);
+			cs.setString(2, pojo.getNombre());
 			
 			LOG.debug(cs);
 			

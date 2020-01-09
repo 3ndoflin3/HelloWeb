@@ -70,11 +70,11 @@ public class InicioController extends HttpServlet {
 			c.setNombre("mock" + System.currentTimeMillis() );
 			daoCategoria.create(c);
 
-//			daoCategoria.delete(c.getId());
-//
-//			daoCategoria.update(1, c);
-//
-//			daoCategoria.getById(1) ;
+			daoCategoria.delete(c.getId());
+
+			daoCategoria.update(1, c);
+
+			daoCategoria.getById(1) ;
 
 		}catch (Exception e) {
 			e.printStackTrace();
